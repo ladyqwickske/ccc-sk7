@@ -28,22 +28,24 @@
       --danger: #ffb74d;
       --debt: #ef5350;
       --border: #5a9c52;
+      --gold: #f5d76e;
+      --gold-deep: #e0b83a;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, var(--bg-page-alt) 0%, var(--bg-page) 55%, var(--accent-light) 100%);
+      background: linear-gradient(135deg, var(--bg-page-alt) 0%, var(--bg-page) 55%, #5c6a24 100%);
       color: var(--text); min-height: 100vh; background-attachment: fixed; padding: 60px 8px 80px 8px;
     }
     .tab-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; justify-content: center; gap: 0;
-      background: rgba(30, 70, 36, 0.96); border-bottom: 2px solid var(--primary-soft);
+      background: rgba(30, 70, 36, 0.96); border-bottom: 2px solid var(--gold-deep);
       box-shadow: 0 1px 4px rgba(0,0,0,0.08); padding: 0;
     }
     .tab-nav a { color: var(--text-muted); text-decoration: none; padding: 12px 18px; font-size: 0.95em; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s; }
     .tab-nav a:hover { color: var(--primary-soft); }
-    .tab-nav a.active { color: var(--primary-soft); border-bottom-color: var(--primary); }
+    .tab-nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
     .nav-icon { width: 18px; height: 18px; vertical-align: middle; margin-right: 4px; }
     .login-bar { position: fixed; top: 0; right: 8px; z-index: 1001; display: flex; align-items: center; gap: 8px; padding: 8px; }
     .login-bar .user-email { font-size: 0.8em; color: var(--primary-soft); }
@@ -54,7 +56,7 @@
     .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 4px; }
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--primary); border-radius: 2px; }
     .container { max-width: 1040px; margin: 0 auto; background: var(--bg-card); border-radius: 16px; box-shadow: 0 12px 30px rgba(34, 68, 45,0.12); padding: 24px 16px; border: 1px solid rgba(156, 233, 180,0.45); }
-    h1 { color: var(--primary-soft); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
+    h1 { color: var(--gold); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
     h2 { color: var(--primary-soft); font-size: 1.05em; margin: 18px 0 10px; }
     .site-logo { width: 64px; height: 64px; display: block; margin: 0 auto 8px auto; }
     .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 16px; font-size: 0.9em; }
@@ -78,7 +80,7 @@
     .progress-fill { height: 100%; background: var(--primary); }
     .table-wrap { overflow: auto; max-height: 48vh; border: 1px solid var(--border); border-radius: 8px; background: #1e4524; margin-top: 8px; }
     table { width: 100%; border-collapse: collapse; min-width: 620px; font-size: 0.86em; }
-    th { position: sticky; top: 0; background: var(--bg-card-soft); color: var(--primary-soft); padding: 9px 8px; text-align: left; border-bottom: 2px solid var(--accent); z-index: 1; }
+    th { position: sticky; top: 0; background: var(--bg-card-soft); color: var(--primary-soft); padding: 9px 8px; text-align: left; border-bottom: 2px solid var(--gold-deep); z-index: 1; }
     td { padding: 8px; border-bottom: 1px solid #3e7240; }
     tr:hover { background: rgba(156, 233, 180,0.14); }
     .positive { color: var(--success); font-weight: 700; }
