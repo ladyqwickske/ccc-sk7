@@ -88,7 +88,7 @@
     if (isAdmin || ADMIN_ONLY_PAGES.indexOf(page) === -1) return;
 
     document.body.innerHTML = '<div style="max-width:520px;margin:80px auto;padding:32px;'
-      + 'background:rgba(18, 38, 18, 0.96);border:1px solid #2a4a28;border-radius:16px;text-align:center;'
+      + 'background:rgba(30, 70, 36, 0.96);border:1px solid #3e7240;border-radius:16px;text-align:center;'
       + 'font-family:Segoe UI,Arial,sans-serif;color:#a0cfaf;box-shadow:0 12px 30px rgba(34, 68, 45,0.12);">'
       + '<h1 style="color:#97d8ab;font-size:22px;margin-bottom:12px;">Restricted page</h1>'
       + '<p style="color:#9dd2ae;font-size:14px;margin-bottom:20px;">This page is only available to clan superiors.</p>'

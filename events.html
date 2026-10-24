@@ -17,19 +17,19 @@
       --primary-strong: #96e072;
       --primary-hover: #3e8914;
       --accent: #96e072;
-      --accent-light: #163a17;
+      --accent-light: #2d6230;
       --accent-strong: #3e8914;
       --accent-deep: #96e072;
-      --bg-dark: #071407;
-      --bg-card: rgba(17, 36, 17, 0.96);
-      --bg-card-soft: #1b3a1b;
-      --bg-page: #0b1a0b;
-      --bg-page-alt: #134611;
+      --bg-dark: #10291a;
+      --bg-card: rgba(31, 68, 36, 0.95);
+      --bg-card-soft: #2b5a31;
+      --bg-page: #173a1c;
+      --bg-page-alt: #2e7a33;
       --text: #e8fccf;
-      --text-muted: #a8c99a;
+      --text-muted: #c6e6b6;
       --success: #96e072;
       --danger: #ffb74d;
-      --border: #2f5d2c;
+      --border: #5a9c52;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -40,7 +40,7 @@
     }
     .tab-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      display: flex; justify-content: center; background: rgba(18, 38, 18, 0.96);
+      display: flex; justify-content: center; background: rgba(30, 70, 36, 0.96);
       border-bottom: 2px solid var(--primary-soft);
       box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     }
@@ -48,14 +48,14 @@
       color: var(--text-muted); text-decoration: none; padding: 12px 18px;
       font-size: 0.95em; font-weight: 500; border-bottom: 3px solid transparent;
     }
-    .tab-nav a:hover { color: var(--primary); }
-    .tab-nav a.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .tab-nav a:hover { color: var(--primary-soft); }
+    .tab-nav a.active { color: var(--primary-soft); border-bottom-color: var(--primary); }
     .nav-icon { width: 18px; height: 18px; vertical-align: middle; margin-right: 4px; }
     .login-bar {
       position: fixed; top: 0; right: 8px; z-index: 1001;
       display: flex; align-items: center; gap: 8px; padding: 8px;
     }
-    .login-bar .user-email { font-size: 0.8em; color: var(--primary); }
+    .login-bar .user-email { font-size: 0.8em; color: var(--primary-soft); }
     .login-bar button {
       background: var(--primary); color: #ffffff; border: none; border-radius: 6px;
       padding: 6px 14px; cursor: pointer; font-weight: 600; font-size: 0.85em;
@@ -65,18 +65,18 @@
       max-width: 1200px; margin: 0 auto; background: var(--bg-card);
       border-radius: 16px; box-shadow: 0 12px 30px rgba(34, 68, 45,0.12); padding: 24px 16px; border: 1px solid rgba(156, 233, 180,0.45);
     }
-    h1 { color: var(--primary); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
+    h1 { color: var(--primary-soft); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
     .site-logo { width: 64px; height: 64px; display: block; margin: 0 auto 8px auto; }
     .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 16px; font-size: 0.9em; }
 
     /* Admin panel */
-    .admin-panel { display: none; background: linear-gradient(180deg, #122612 0%, var(--bg-card-soft) 100%); border-radius: 12px; padding: 16px; margin-bottom: 20px; border: 1px solid var(--border); }
+    .admin-panel { display: none; background: linear-gradient(180deg, #1e4524 0%, var(--bg-card-soft) 100%); border-radius: 12px; padding: 16px; margin-bottom: 20px; border: 1px solid var(--border); }
     .admin-panel.visible { display: block; }
-    .admin-panel h3 { color: var(--primary); margin-bottom: 12px; font-size: 1em; }
+    .admin-panel h3 { color: var(--primary-soft); margin-bottom: 12px; font-size: 1em; }
     .form-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
     .form-row input, .form-row select {
       flex: 1; min-width: 120px; padding: 8px 12px;
-      background: #122612; border: 1px solid var(--border); border-radius: 8px;
+      background: #1e4524; border: 1px solid var(--border); border-radius: 8px;
       color: var(--text); font-size: 0.9em;
     }
     .form-row input:focus, .form-row select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(61, 163, 93,0.18); }
@@ -99,9 +99,9 @@
     /* Events Table */
     .table-container { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
-    th { background: var(--bg-card-soft); color: var(--primary-hover); padding: 10px 8px; text-align: left; border-bottom: 2px solid var(--accent); cursor: pointer; user-select: none; }
+    th { background: var(--bg-card-soft); color: var(--primary-soft); padding: 10px 8px; text-align: left; border-bottom: 2px solid var(--accent); cursor: pointer; user-select: none; }
     th:hover { background: var(--accent-light); }
-    td { padding: 8px; border-bottom: 1px solid #2a4a28; }
+    td { padding: 8px; border-bottom: 1px solid #3e7240; }
     tr:hover { background: rgba(156, 233, 180,0.14); }
 
     .method-badge {
@@ -125,9 +125,9 @@
 
     /* Participation Section */
     .participation-section {
-      background: #1b3a1b; border-radius: 12px; padding: 16px; margin-top: 16px; border: 1px solid var(--border);
+      background: #2b5a31; border-radius: 12px; padding: 16px; margin-top: 16px; border: 1px solid var(--border);
     }
-    .participation-section h3 { color: var(--primary); margin-bottom: 12px; }
+    .participation-section h3 { color: var(--primary-soft); margin-bottom: 12px; }
 
     /* Chest Types Checkbox List */
     .chest-types-section { margin-bottom: 12px; }
@@ -136,7 +136,7 @@
     #chestTypesList {
       max-height: 200px; overflow-y: auto;
       border: 1px solid var(--border); border-radius: 6px;
-      padding: 8px; background: #122612;
+      padding: 8px; background: #1e4524;
     }
     .checkbox-item { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 4px; cursor: pointer; }
     .checkbox-item:hover { background: var(--accent-light); }
@@ -155,7 +155,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .toast {
       position: fixed; bottom: 20px; right: 20px; z-index: 3000;
-      background: #122612; color: var(--text); padding: 12px 20px;
+      background: #1e4524; color: var(--text); padding: 12px 20px;
       border-radius: 8px; font-size: 0.9em; display: none;
       box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     }
@@ -206,7 +206,7 @@
 </nav>
 
 <div class="login-gate" id="loginGate" style="max-width:500px;margin:80px auto;text-align:center;background:var(--bg-card);border-radius:16px;padding:40px 24px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-  <h2 style="color:var(--primary);margin-bottom:12px;">🔒 Login Required</h2>
+  <h2 style="color:var(--primary-soft);margin-bottom:12px;">🔒 Login Required</h2>
   <p style="color:var(--text-muted);margin-bottom:20px;">You need to be logged in to view the Events page.</p>
   <button class="btn" onclick="handleLogin()" style="padding:12px 32px;font-size:1em;">🔑 Login</button>
 </div>
@@ -261,10 +261,10 @@
 
   <!-- ===== CHEST EVENTS TAB ===== -->
   <div class="tab-panel" id="chestEventsTab" style="display:none">
-    <h3 style="color:var(--primary); margin-bottom:12px;">📊 Chest-Based Events</h3>
+    <h3 style="color:var(--primary-soft); margin-bottom:12px;">📊 Chest-Based Events</h3>
     <p style="margin-bottom:12px; color:var(--text-muted); font-size:0.9em;">Select an event to view or recalculate chest-based participation.</p>
     <div class="form-row" style="margin-bottom:12px;">
-      <select id="chestEventSelect" onchange="onChestEventSelected()" style="flex:1; min-width:200px; padding:8px 12px; background:#122612; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
+      <select id="chestEventSelect" onchange="onChestEventSelected()" style="flex:1; min-width:200px; padding:8px 12px; background:#1e4524; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
         <option value="">-- Select Chest Event --</option>
       </select>
       <button class="btn" id="chestRecalcBtn" style="display:none" onclick="calculateParticipation()">🔄 Recalculate</button>
@@ -285,20 +285,20 @@
 
   <!-- ===== MANUAL EVENTS TAB ===== -->
   <div class="tab-panel" id="manualEventsTab" style="display:none">
-    <h3 style="color:var(--primary); margin-bottom:12px;">✏️ Manual Events</h3>
+    <h3 style="color:var(--primary-soft); margin-bottom:12px;">✏️ Manual Events</h3>
     <p style="margin-bottom:12px; color:var(--text-muted); font-size:0.9em;">Manually track participation for events.</p>
     <div class="form-row" style="margin-bottom:12px;">
-      <select id="manualEventSelect" onchange="onManualEventSelected()" style="flex:1; min-width:200px; padding:8px 12px; background:#122612; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
+      <select id="manualEventSelect" onchange="onManualEventSelected()" style="flex:1; min-width:200px; padding:8px 12px; background:#1e4524; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
         <option value="">-- Select Manual Event --</option>
       </select>
     </div>
-    <div id="manualEntryForm" style="display:none; margin-bottom:12px; padding:12px; background:#122612; border:1px solid var(--border); border-radius:8px;">
-      <h4 style="color:var(--primary); margin-bottom:8px;">Add Entry</h4>
+    <div id="manualEntryForm" style="display:none; margin-bottom:12px; padding:12px; background:#1e4524; border:1px solid var(--border); border-radius:8px;">
+      <h4 style="color:var(--primary-soft); margin-bottom:8px;">Add Entry</h4>
       <div class="form-row">
-        <select id="manualMember" style="flex:1; min-width:140px; padding:8px 12px; background:#122612; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
+        <select id="manualMember" style="flex:1; min-width:140px; padding:8px 12px; background:#1e4524; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
           <option value="">Select member...</option>
         </select>
-        <input type="number" id="manualPoints" placeholder="Points" style="flex:0.5; min-width:80px; padding:8px 12px; background:#122612; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;" onkeypress="if(event.key==='Enter'){var bp=document.getElementById('manualBatchPanel');if(bp&&bp.style.display!=='none'){addToManualBatch();}else{saveManualEntry();}}">
+        <input type="number" id="manualPoints" placeholder="Points" style="flex:0.5; min-width:80px; padding:8px 12px; background:#1e4524; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;" onkeypress="if(event.key==='Enter'){var bp=document.getElementById('manualBatchPanel');if(bp&&bp.style.display!=='none'){addToManualBatch();}else{saveManualEntry();}}">
         <button class="btn" onclick="var bp=document.getElementById('manualBatchPanel');if(bp&&bp.style.display!=='none'){addToManualBatch();}else{saveManualEntry();}">💾 Save</button>
         <button class="btn" style="background:#7c3aed;" onclick="toggleManualBatch()">📋 Batch</button>
         <button class="btn secondary" onclick="fillNonParticipants()">Fill Non-Participants</button>
@@ -333,20 +333,20 @@
 
   <!-- ===== TROOP EVENTS TAB ===== -->
   <div class="tab-panel" id="troopEventsTab" style="display:none">
-    <h3 style="color:var(--primary); margin-bottom:12px;">🎖️ Troop-Based Events</h3>
+    <h3 style="color:var(--primary-soft); margin-bottom:12px;">🎖️ Troop-Based Events</h3>
     <p style="margin-bottom:12px; color:var(--text-muted); font-size:0.9em;">Track participation for troop-based events. Enter points, then calculate to compare against troop-level targets.</p>
     <div class="form-row" style="margin-bottom:12px;">
-      <select id="troopEventSelect" onchange="onTroopEventSelected()" style="flex:1; min-width:200px; padding:8px 12px; background:#122612; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
+      <select id="troopEventSelect" onchange="onTroopEventSelected()" style="flex:1; min-width:200px; padding:8px 12px; background:#1e4524; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
         <option value="">-- Select Troop Event --</option>
       </select>
     </div>
-    <div id="troopEntryForm" style="display:none; margin-bottom:12px; padding:12px; background:#122612; border:1px solid var(--border); border-radius:8px;">
-      <h4 style="color:var(--primary); margin-bottom:8px;">Add Entry</h4>
+    <div id="troopEntryForm" style="display:none; margin-bottom:12px; padding:12px; background:#1e4524; border:1px solid var(--border); border-radius:8px;">
+      <h4 style="color:var(--primary-soft); margin-bottom:8px;">Add Entry</h4>
       <div class="form-row">
-        <select id="troopMember" style="flex:1; min-width:140px; padding:8px 12px; background:#122612; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
+        <select id="troopMember" style="flex:1; min-width:140px; padding:8px 12px; background:#1e4524; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
           <option value="">Select member...</option>
         </select>
-        <input type="number" id="troopPoints" placeholder="Points" style="flex:0.5; min-width:80px; padding:8px 12px; background:#122612; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;" onkeypress="if(event.key==='Enter'){var bp=document.getElementById('troopBatchPanel');if(bp&&bp.style.display!=='none'){addToTroopBatch();}else{saveTroopEntry();}}">
+        <input type="number" id="troopPoints" placeholder="Points" style="flex:0.5; min-width:80px; padding:8px 12px; background:#1e4524; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;" onkeypress="if(event.key==='Enter'){var bp=document.getElementById('troopBatchPanel');if(bp&&bp.style.display!=='none'){addToTroopBatch();}else{saveTroopEntry();}}">
         <button class="btn" onclick="var bp=document.getElementById('troopBatchPanel');if(bp&&bp.style.display!=='none'){addToTroopBatch();}else{saveTroopEntry();}">💾 Save</button>
         <button class="btn" style="background:#7c3aed;" onclick="toggleTroopBatch()">📋 Batch</button>
       </div>
@@ -372,7 +372,7 @@
       </div>
     </div>
     <div id="troopTargetInfo" style="display:none; margin-bottom:12px; padding:10px 14px; background:rgba(156, 233, 180,0.14); border:1px solid var(--border); border-radius:8px;">
-      <strong style="color:var(--primary); font-size:0.85em;">🎯 Category Targets:</strong>
+      <strong style="color:var(--primary-soft); font-size:0.85em;">🎯 Category Targets:</strong>
       <span id="troopTargetSummary" style="font-size:0.85em; color:var(--text-muted);"></span>
     </div>
     <div class="participation-section" id="troopParticipationSection" style="display:none">
@@ -388,14 +388,14 @@
 
   <!-- ===== HERO EVENTS TAB ===== -->
   <div class="tab-panel" id="heroEventsTab" style="display:none">
-    <h3 style="color:var(--primary); margin-bottom:12px;">🦸 Hero Level Events</h3>
+    <h3 style="color:var(--primary-soft); margin-bottom:12px;">🦸 Hero Level Events</h3>
     <p style="margin-bottom:12px; color:var(--text-muted); font-size:0.9em;">Did each member's hero level go up enough during the event? The level at the start is the latest hero level entered before the start date; at the end, the latest one entered up to 1 day after the end date. Without those entries a member shows <strong>No data</strong> (no penalty). Calculated automatically once that extra day is over.</p>
     <div class="form-row" style="margin-bottom:12px;">
-      <select id="heroEventSelect" onchange="onHeroEventSelected()" style="flex:1; min-width:200px; padding:8px 12px; background:#122612; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
+      <select id="heroEventSelect" onchange="onHeroEventSelected()" style="flex:1; min-width:200px; padding:8px 12px; background:#1e4524; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
         <option value="">-- Select Hero Event --</option>
       </select>
     </div>
-    <div id="heroEventActions" style="display:none; margin-bottom:12px; padding:12px; background:#122612; border:1px solid var(--border); border-radius:8px;">
+    <div id="heroEventActions" style="display:none; margin-bottom:12px; padding:12px; background:#1e4524; border:1px solid var(--border); border-radius:8px;">
       <div id="heroEventInfo" style="font-size:0.85em; color:var(--text-muted); margin-bottom:8px;"></div>
       <div class="form-row">
         <button class="btn" style="background:var(--primary);" onclick="calculateHeroLevelEvent()">🔄 Calculate</button>
@@ -426,13 +426,13 @@
         <input type="number" id="eventTargetPoints" placeholder="Target Points">
       </div>
       <div id="eventTroopTargetSection" style="display:none; margin-bottom:12px; padding:12px; border:1px solid var(--border); border-radius:8px; background:rgba(156, 233, 180,0.10);">
-        <label style="font-weight:600; color:var(--primary); margin-bottom:8px; display:block;">🎯 Troop Category Targets</label>
+        <label style="font-weight:600; color:var(--primary-soft); margin-bottom:8px; display:block;">🎯 Troop Category Targets</label>
         <div class="note" style="margin-bottom:8px;">Set point targets per troop category. Categories match the highest troop level recorded for each member (e.g. G7 = Guard level 7).</div>
         <div id="troopTargetRows"></div>
         <button class="btn secondary" onclick="addTroopTargetRow()" style="margin-top:6px; font-size:0.8em;">+ Add Category</button>
       </div>
       <div id="eventPenaltySection" style="margin-bottom:12px; padding:12px; border:1px solid var(--border); border-radius:8px; background:rgba(255,210,77,0.14);">
-        <label style="display:flex;align-items:center;gap:8px;font-weight:600;color:var(--primary);margin-bottom:8px;text-transform:none;">
+        <label style="display:flex;align-items:center;gap:8px;font-weight:600;color:var(--primary-soft);margin-bottom:8px;text-transform:none;">
           <input type="checkbox" id="eventPenaltyEnabled" onchange="onPenaltyEnabledChange()" style="width:auto;"> Enable missed-target penalty
         </label>
         <div id="eventPenaltyFields" class="form-row" style="display:none;margin-bottom:0;">
@@ -450,18 +450,18 @@
       </div>
 
       <hr style="border:none; border-top:1px solid var(--border); margin:16px 0;">
-      <h3 style="color:var(--primary); margin-bottom:8px;">📅 Generate Upcoming Events from Calendar</h3>
+      <h3 style="color:var(--primary-soft); margin-bottom:8px;">📅 Generate Upcoming Events from Calendar</h3>
       <p style="margin-bottom:10px; color:var(--text-muted); font-size:0.85em;">Automatically create events based on the recurring calendar schedule.</p>
       <div class="form-row" style="align-items:center;">
         <button class="btn" id="generateEventsBtn" onclick="generateCalendarEvents()" style="background:var(--success); color:#fff;">📅 Generate Events</button>
-        <select id="generateDaysSelect" style="flex:0.5; min-width:140px; padding:8px 12px; background:#122612; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
+        <select id="generateDaysSelect" style="flex:0.5; min-width:140px; padding:8px 12px; background:#1e4524; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9em;">
           <option value="7">Next 7 days</option>
           <option value="14">Next 14 days</option>
           <option value="30" selected>Next 30 days</option>
           <option value="60">Next 60 days</option>
         </select>
       </div>
-      <div style="margin:8px 0; padding:8px 12px; background:#1b3a1b; border-radius:8px; border:1px solid var(--border);">
+      <div style="margin:8px 0; padding:8px 12px; background:#2b5a31; border-radius:8px; border:1px solid var(--border);">
         <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
           <span style="font-size:0.85em; color:var(--text-muted); font-weight:600;">Generate for:</span>
           <label style="font-size:0.8em; color:var(--text-muted); cursor:pointer;"><input type="checkbox" id="genSelectAll" checked onchange="document.querySelectorAll('.gen-type-cb').forEach(cb=>cb.checked=this.checked)"> All</label>
@@ -516,7 +516,7 @@
         <div class="note">Select which chest types count for this event type.</div>
       </div>
       <div id="typeTroopTargetSection" style="display:none; margin-bottom:12px; padding:12px; border:1px solid var(--border); border-radius:8px; background:var(--bg-card-soft);">
-        <label style="font-weight:600; color:var(--primary); margin-bottom:8px; display:block;">🎯 Default Troop Category Targets</label>
+        <label style="font-weight:600; color:var(--primary-soft); margin-bottom:8px; display:block;">🎯 Default Troop Category Targets</label>
         <div class="note" style="margin-bottom:8px;">Filled in for every new event of this type (also the generated ones). An event's own targets can still be changed.</div>
         <div id="typeTroopTargetRows"></div>
         <button class="btn secondary" onclick="addTroopTargetRow('', '', 'typeTroopTargetRows')" style="margin-top:6px; font-size:0.8em;">+ Add Category</button>
@@ -546,9 +546,9 @@
 
 </div>
 
-<div id="penaltyPreviewPanel" style="display:none; position:fixed; right:16px; bottom:16px; width:min(420px, calc(100vw - 32px)); max-height:60vh; overflow:auto; background:#122612; border:1px solid var(--border); border-radius:10px; box-shadow:0 6px 24px rgba(0,0,0,0.18); padding:14px; z-index:900;">
+<div id="penaltyPreviewPanel" style="display:none; position:fixed; right:16px; bottom:16px; width:min(420px, calc(100vw - 32px)); max-height:60vh; overflow:auto; background:#1e4524; border:1px solid var(--border); border-radius:10px; box-shadow:0 6px 24px rgba(0,0,0,0.18); padding:14px; z-index:900;">
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-    <strong style="color:var(--primary);">👁️ Penalty Preview</strong>
+    <strong style="color:var(--primary-soft);">👁️ Penalty Preview</strong>
     <button class="btn secondary" style="padding:3px 9px; font-size:0.8em;" onclick="closePenaltyPreview()">✖ Close</button>
   </div>
   <p id="penaltyPreviewSummary" style="font-size:0.82em; color:var(--text-muted); margin:0 0 8px;"></p>
