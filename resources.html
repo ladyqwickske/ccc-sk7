@@ -16,30 +16,32 @@
       --primary-soft: #96e072;
       --primary-hover: #3e8914;
       --accent: #96e072;
-      --accent-light: #163a17;
+      --accent-light: #2d6230;
       --accent-deep: #96e072;
-      --bg-card: rgba(17, 36, 17, 0.96);
-      --bg-card-soft: #1b3a1b;
-      --bg-page: #0b1a0b;
-      --bg-page-alt: #134611;
+      --bg-card: rgba(31, 68, 36, 0.95);
+      --bg-card-soft: #2b5a31;
+      --bg-page: #173a1c;
+      --bg-page-alt: #2e7a33;
       --text: #e8fccf;
-      --text-muted: #a8c99a;
+      --text-muted: #c6e6b6;
       --success: #96e072;
       --danger: #ffb74d;
       --debt: #ef5350;
-      --border: #2f5d2c;
+      --border: #5a9c52;
+      --gold: #f5d76e;
+      --gold-deep: #e0b83a;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, var(--bg-page-alt) 0%, var(--bg-page) 55%, var(--accent-light) 100%);
+      background: linear-gradient(135deg, var(--bg-page-alt) 0%, var(--bg-page) 55%, #5c6a24 100%);
       color: var(--text); min-height: 100vh;
       background-attachment: fixed; padding: 60px 8px 80px 8px;
     }
     .tab-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; justify-content: center; gap: 0;
-      background: rgba(18, 38, 18, 0.96); border-bottom: 2px solid var(--primary-soft);
+      background: rgba(30, 70, 36, 0.96); border-bottom: 2px solid var(--gold-deep);
       box-shadow: 0 1px 4px rgba(0,0,0,0.08); padding: 0;
     }
     .tab-nav a {
@@ -47,14 +49,14 @@
       padding: 12px 18px; font-size: 0.95em; font-weight: 500;
       border-bottom: 3px solid transparent; transition: all 0.2s;
     }
-    .tab-nav a:hover { color: var(--primary); }
-    .tab-nav a.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .tab-nav a:hover { color: var(--primary-soft); }
+    .tab-nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
     .nav-icon { width: 18px; height: 18px; vertical-align: middle; margin-right: 4px; }
     .login-bar {
       position: fixed; top: 0; right: 8px; z-index: 1001;
       display: flex; align-items: center; gap: 8px; padding: 8px;
     }
-    .login-bar .user-email { font-size: 0.8em; color: var(--primary); }
+    .login-bar .user-email { font-size: 0.8em; color: var(--primary-soft); }
     .login-bar button {
       background: var(--primary); color: #fff; border: none; border-radius: 6px;
       padding: 6px 14px; cursor: pointer; font-weight: 600; font-size: 0.85em;
@@ -65,21 +67,21 @@
       max-width: 1200px; margin: 0 auto; background: var(--bg-card);
       border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 24px 16px;
     }
-    h1 { color: var(--primary); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
+    h1 { color: var(--gold); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
     .site-logo { width: 64px; height: 64px; display: block; margin: 0 auto 8px auto; }
     .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 16px; font-size: 0.9em; }
 
     /* Filters */
     .filters {
       display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;
-      padding: 14px 16px; background: #1b3a1b; border-radius: 12px;
+      padding: 14px 16px; background: #2b5a31; border-radius: 12px;
       border: 1px solid var(--border); align-items: flex-end;
     }
     .filter-group { display: flex; flex-direction: column; gap: 4px; min-width: 140px; flex: 1; }
-    .filter-group label { font-size: 0.75em; font-weight: 600; color: var(--primary); text-transform: uppercase; }
+    .filter-group label { font-size: 0.75em; font-weight: 600; color: var(--primary-soft); text-transform: uppercase; }
     .filter-group input, .filter-group select {
       padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
-      font-size: 0.9em; background: #122612; color: var(--text);
+      font-size: 0.9em; background: #1e4524; color: var(--text);
     }
     .filter-group input:focus, .filter-group select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(26,122,109,0.15); }
     .btn {
@@ -96,11 +98,11 @@
       gap: 12px; margin-bottom: 20px;
     }
     .summary-card {
-      background: #122612; border-radius: 10px; padding: 12px 14px;
+      background: #1e4524; border-radius: 10px; padding: 12px 14px;
       border: 1px solid var(--border); text-align: center;
     }
     .summary-card .card-label { font-size: 0.75em; text-transform: uppercase; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; }
-    .summary-card .card-value { font-size: 1.4em; font-weight: 700; color: var(--primary); }
+    .summary-card .card-value { font-size: 1.4em; font-weight: 700; color: var(--primary-soft); }
     .summary-card .card-value.positive { color: var(--success); }
     .summary-card .card-value.negative { color: var(--danger); }
     .summary-card .card-sub { font-size: 0.7em; color: var(--text-muted); margin-top: 2px; }
@@ -109,13 +111,13 @@
     .table-container { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
     th {
-      background: var(--bg-card-soft); color: var(--primary); padding: 10px 8px;
-      text-align: left; border-bottom: 2px solid var(--accent); cursor: pointer;
+      background: var(--bg-card-soft); color: var(--primary-soft); padding: 10px 8px;
+      text-align: left; border-bottom: 2px solid var(--gold-deep); cursor: pointer;
       white-space: nowrap; user-select: none;
     }
     th:hover { background: #ddd5c5; }
     th .sort-arrow { font-size: 0.7em; margin-left: 4px; }
-    td { padding: 8px; border-bottom: 1px solid #2a4a28; }
+    td { padding: 8px; border-bottom: 1px solid #3e7240; }
     tr:hover { background: rgba(26,122,109,0.05); }
     .amount-positive { color: var(--success); font-weight: 600; }
     .amount-negative { color: var(--danger); font-weight: 600; }
@@ -130,7 +132,7 @@
 
     /* Player Summary */
     .player-summary-section { margin-top: 20px; }
-    .player-summary-section h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.1em; }
+    .player-summary-section h3 { color: var(--primary-soft); margin-bottom: 10px; font-size: 1.1em; }
     .player-summary-table td { font-size: 0.85em; }
     .player-summary-table th { font-size: 0.8em; }
 
@@ -157,7 +159,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .toast {
       position: fixed; bottom: 20px; right: 20px; z-index: 3000;
-      background: #122612; color: var(--text); padding: 12px 20px;
+      background: #1e4524; color: var(--text); padding: 12px 20px;
       border-radius: 8px; font-size: 0.9em; display: none;
       box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     }
@@ -176,8 +178,8 @@
     /* Tabs */
     .view-tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
     .view-tab-btn { padding: 8px 14px; background: none; border: none; color: var(--text-muted); font-size: 0.85em; font-weight: 600; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-    .view-tab-btn:hover { color: var(--primary); }
-    .view-tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .view-tab-btn:hover { color: var(--primary-soft); }
+    .view-tab-btn.active { color: var(--primary-soft); border-bottom-color: var(--primary); }
 
     @media (max-width: 600px) {
       body { padding: 50px 4px 70px 4px; }
@@ -216,7 +218,7 @@
 </nav>
 
 <div class="login-gate" id="loginGate" style="max-width:500px;margin:80px auto;text-align:center;background:var(--bg-card);border-radius:16px;padding:40px 24px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-  <h2 style="color:var(--primary);margin-bottom:12px;">🔒 Login Required</h2>
+  <h2 style="color:var(--primary-soft);margin-bottom:12px;">🔒 Login Required</h2>
   <p style="color:var(--text-muted);margin-bottom:20px;">You need to be logged in to view the Resources page.</p>
   <button class="btn" onclick="handleLogin()" style="padding:12px 32px;font-size:1em;">🔑 Login</button>
 </div>
@@ -353,7 +355,7 @@
 
   <!-- Daily Donors View -->
   <div id="dailyDonorsView" style="display:none" class="player-summary-section">
-    <div style="margin-bottom:12px;padding:10px 14px;background:rgba(255,195,0,0.18);border:1px solid #2a4a28;border-radius:8px;font-size:0.85em;color:#ffd470;">
+    <div style="margin-bottom:12px;padding:10px 14px;background:rgba(255,195,0,0.18);border:1px solid #3e7240;border-radius:8px;font-size:0.85em;color:#ffd470;">
       🌿 Shows players who donated <strong>less than 4,000 Forest Essence</strong> on any day with recorded activity. Players with no Forest Essence donations at all on a given day are highlighted in red.
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px;">
@@ -373,21 +375,21 @@
     </div>
 
     <!-- Worst Performers Card -->
-    <div id="worstPerformersCard" style="margin-bottom:16px;background:#122612;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+    <div id="worstPerformersCard" style="margin-bottom:16px;background:#1e4524;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
       <h3 style="margin:0 0 10px;color:var(--danger);font-size:1em;">🏚️ Bottom 10 — Lowest Forest Essence Contributors</h3>
       <p style="font-size:0.78em;color:var(--text-muted);margin-bottom:10px;">Average daily donation across all recorded days. Members with zero donations are listed first.</p>
       <div id="worstPerformersContent" style="font-size:0.88em;">Loading...</div>
     </div>
 
     <!-- Top Performers Card -->
-    <div id="topPerformersCard" style="margin-bottom:16px;background:#122612;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+    <div id="topPerformersCard" style="margin-bottom:16px;background:#1e4524;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
       <h3 style="margin:0 0 10px;color:var(--success);font-size:1em;">🏆 Top 10 — Highest Forest Essence Contributors</h3>
       <p style="font-size:0.78em;color:var(--text-muted);margin-bottom:10px;">Average daily donation across all recorded days.</p>
       <div id="topPerformersContent" style="font-size:0.88em;">Loading...</div>
     </div>
 
     <!-- Unmatched Resource Names -->
-    <div id="unmatchedNamesCard" style="display:none;margin-bottom:16px;background:#122612;border:1px solid #2a4a28;border-radius:10px;padding:14px 16px;">
+    <div id="unmatchedNamesCard" style="display:none;margin-bottom:16px;background:#1e4524;border:1px solid #3e7240;border-radius:10px;padding:14px 16px;">
       <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" onclick="document.getElementById('unmatchedNamesBody').style.display=document.getElementById('unmatchedNamesBody').style.display==='none'?'block':'none';">
         <h3 style="margin:0;color:var(--danger);font-size:1em;">⚠️ Unmatched Resource Names</h3>
         <span style="font-size:0.8em;color:var(--text-muted);">click to expand ▾</span>
@@ -413,7 +415,7 @@
 
   <!-- Dragon Coins Payouts View -->
   <div id="dragonPayoutsView" style="display:none" class="player-summary-section">
-    <div style="margin-bottom:12px;padding:10px 14px;background:rgba(255,156,0,0.18);border:1px solid #2a4a28;border-radius:8px;font-size:0.85em;color:#ffab70;">
+    <div style="margin-bottom:12px;padding:10px 14px;background:rgba(255,156,0,0.18);border:1px solid #3e7240;border-radius:8px;font-size:0.85em;color:#ffab70;">
       🐉 Dragon Coins are distributed the day after they are contributed. This view shows each player's <strong>last 7 days</strong> balance (contributed − received back). Positive balance = still owed coins.
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;">
@@ -1018,7 +1020,7 @@
     let html = '<table style="width:100%;border-collapse:collapse;font-size:0.85em;">';
     html += '<tr style="border-bottom:2px solid var(--border);"><th style="text-align:left;padding:5px 8px;">Name in Resources</th><th style="text-align:left;padding:5px 8px;">Resources</th><th style="text-align:right;padding:5px 8px;">Sent</th><th style="text-align:right;padding:5px 8px;">Received</th><th style="text-align:center;padding:5px 8px;">Records</th></tr>';
     stats.forEach(s => {
-      html += `<tr style="border-bottom:1px solid #2a4a28;">
+      html += `<tr style="border-bottom:1px solid #3e7240;">
         <td style="padding:4px 8px;font-weight:600;color:var(--danger);">${escapeHtml(s.name)}</td>
         <td style="padding:4px 8px;color:var(--text-muted);font-size:0.9em;">${escapeHtml(s.resources)}</td>
         <td style="padding:4px 8px;text-align:right;" class="amount-positive">+${formatNumber(s.sent)}</td>
@@ -1069,20 +1071,20 @@
     const bottom10 = stats.slice(0, 10);
 
     let html = '<table style="width:100%;border-collapse:collapse;">';
-    html += '<tr style="border-bottom:2px solid var(--accent);">';
-    html += '<th style="text-align:left;padding:6px 8px;font-size:0.8em;color:var(--primary);">#</th>';
-    html += '<th style="text-align:left;padding:6px 8px;font-size:0.8em;color:var(--primary);">Member</th>';
-    html += '<th style="text-align:right;padding:6px 8px;font-size:0.8em;color:var(--primary);">Total Donated</th>';
-    html += '<th style="text-align:right;padding:6px 8px;font-size:0.8em;color:var(--primary);">Avg / Day</th>';
-    html += '<th style="text-align:center;padding:6px 8px;font-size:0.8em;color:var(--primary);">Days Below Target</th>';
-    html += '<th style="text-align:center;padding:6px 8px;font-size:0.8em;color:var(--primary);">Days Met</th>';
+    html += '<tr style="border-bottom:2px solid var(--gold-deep);">';
+    html += '<th style="text-align:left;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">#</th>';
+    html += '<th style="text-align:left;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">Member</th>';
+    html += '<th style="text-align:right;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">Total Donated</th>';
+    html += '<th style="text-align:right;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">Avg / Day</th>';
+    html += '<th style="text-align:center;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">Days Below Target</th>';
+    html += '<th style="text-align:center;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">Days Met</th>';
     html += '</tr>';
 
     bottom10.forEach((s, i) => {
       const avgColor = s.avgPerDay === 0 ? 'var(--danger)' : s.avgPerDay < target ? '#e65100' : 'var(--success)';
       const missedPct = Math.round((s.daysMissed / s.totalDays) * 100);
       const rowBg = s.totalDonated === 0 ? 'rgba(192,57,43,0.06)' : i % 2 === 0 ? 'var(--bg-card-soft)' : 'transparent';
-      html += `<tr style="background:${rowBg};border-bottom:1px solid #2a4a28;">
+      html += `<tr style="background:${rowBg};border-bottom:1px solid #3e7240;">
         <td style="padding:5px 8px;font-weight:700;color:var(--text-muted);">${i + 1}</td>
         <td style="padding:5px 8px;font-weight:600;">${escapeHtml(s.member)}${newMemberBadge(s.member)}${s.totalDonated === 0 ? ' <span style="color:var(--danger);font-size:0.75em;">⛔ ZERO</span>' : ''}</td>
         <td style="padding:5px 8px;text-align:right;font-weight:600;color:${s.totalDonated === 0 ? 'var(--danger)' : 'var(--text)'};">${formatNumber(s.totalDonated)}</td>
@@ -1132,12 +1134,12 @@
     const top10 = stats.slice(0, 10);
 
     let html = '<table style="width:100%;border-collapse:collapse;">';
-    html += '<tr style="border-bottom:2px solid var(--accent);">';
-    html += '<th style="text-align:left;padding:6px 8px;font-size:0.8em;color:var(--primary);">#</th>';
-    html += '<th style="text-align:left;padding:6px 8px;font-size:0.8em;color:var(--primary);">Member</th>';
-    html += '<th style="text-align:right;padding:6px 8px;font-size:0.8em;color:var(--primary);">Total Donated</th>';
-    html += '<th style="text-align:right;padding:6px 8px;font-size:0.8em;color:var(--primary);">Avg / Day</th>';
-    html += '<th style="text-align:center;padding:6px 8px;font-size:0.8em;color:var(--primary);">Days Met Target</th>';
+    html += '<tr style="border-bottom:2px solid var(--gold-deep);">';
+    html += '<th style="text-align:left;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">#</th>';
+    html += '<th style="text-align:left;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">Member</th>';
+    html += '<th style="text-align:right;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">Total Donated</th>';
+    html += '<th style="text-align:right;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">Avg / Day</th>';
+    html += '<th style="text-align:center;padding:6px 8px;font-size:0.8em;color:var(--primary-soft);">Days Met Target</th>';
     html += '</tr>';
 
     const medals = ['🥇', '🥈', '🥉'];
@@ -1145,7 +1147,7 @@
       const metPct = Math.round((s.daysDonated / s.totalDays) * 100);
       const rowBg = i % 2 === 0 ? 'var(--accent-light)' : 'transparent';
       const medal = medals[i] || '';
-      html += `<tr style="background:${rowBg};border-bottom:1px solid #2a4a28;">
+      html += `<tr style="background:${rowBg};border-bottom:1px solid #3e7240;">
         <td style="padding:5px 8px;font-weight:700;color:var(--text-muted);">${medal || (i + 1)}</td>
         <td style="padding:5px 8px;font-weight:600;">${escapeHtml(s.member)}${newMemberBadge(s.member)}</td>
         <td style="padding:5px 8px;text-align:right;font-weight:600;color:var(--success);">${formatNumber(s.totalDonated)}</td>

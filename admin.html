@@ -19,31 +19,33 @@
       --primary-strong: #96e072;
       --primary-hover: #3e8914;
       --accent: #96e072;
-      --accent-light: #163a17;
+      --accent-light: #2d6230;
       --accent-strong: #3e8914;
       --accent-deep: #96e072;
-      --bg-dark: #071407;
-      --bg-card: rgba(17, 36, 17, 0.96);
-      --bg-card-soft: #1b3a1b;
-      --bg-page: #0b1a0b;
-      --bg-page-alt: #134611;
+      --bg-dark: #10291a;
+      --bg-card: rgba(31, 68, 36, 0.95);
+      --bg-card-soft: #2b5a31;
+      --bg-page: #173a1c;
+      --bg-page-alt: #2e7a33;
       --text: #e8fccf;
-      --text-muted: #a8c99a;
+      --text-muted: #c6e6b6;
       --success: #96e072;
       --danger: #ffb74d;
-      --border: #2f5d2c;
+      --border: #5a9c52;
+      --gold: #f5d76e;
+      --gold-deep: #e0b83a;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, var(--bg-page-alt) 0%, var(--bg-page) 55%, var(--accent-light) 100%);
+      background: linear-gradient(135deg, var(--bg-page-alt) 0%, var(--bg-page) 55%, #5c6a24 100%);
       color: var(--text); min-height: 100vh;
       background-attachment: fixed; padding: 60px 8px 80px 8px;
     }
     .tab-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; justify-content: center; gap: 0;
-      background: rgba(18, 38, 18, 0.96); border-bottom: 2px solid var(--primary-soft);
+      background: rgba(30, 70, 36, 0.96); border-bottom: 2px solid var(--gold-deep);
       box-shadow: 0 1px 4px rgba(0,0,0,0.08);
       padding: 0;
     }
@@ -52,14 +54,14 @@
       padding: 12px 18px; font-size: 0.95em; font-weight: 500;
       border-bottom: 3px solid transparent; transition: all 0.2s;
     }
-    .tab-nav a:hover { color: var(--primary); }
-    .tab-nav a.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .tab-nav a:hover { color: var(--primary-soft); }
+    .tab-nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
     .nav-icon { width: 18px; height: 18px; vertical-align: middle; margin-right: 4px; }
     .login-bar {
       position: fixed; top: 0; right: 8px; z-index: 1001;
       display: flex; align-items: center; gap: 8px; padding: 8px;
     }
-    .login-bar .user-email { font-size: 0.8em; color: var(--primary); }
+    .login-bar .user-email { font-size: 0.8em; color: var(--primary-soft); }
     .login-bar button {
       background: var(--primary); color: #ffffff; border: none; border-radius: 6px;
       padding: 6px 14px; cursor: pointer; font-weight: 600; font-size: 0.85em;
@@ -70,23 +72,23 @@
       max-width: 1200px; margin: 0 auto; background: var(--bg-card);
       border-radius: 16px; box-shadow: 0 12px 30px rgba(34, 68, 45,0.12); padding: 24px 16px; border: 1px solid rgba(156, 233, 180,0.45);
     }
-    h1 { color: var(--primary); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
+    h1 { color: var(--gold); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
     .site-logo { width: 64px; height: 64px; display: block; margin: 0 auto 8px auto; }
     .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 16px; font-size: 0.9em; }
 
     /* Member Form (admin only) */
     .admin-panel {
-      display: none; background: linear-gradient(180deg, #122612 0%, var(--bg-card-soft) 100%); border-radius: 12px;
+      display: none; background: linear-gradient(180deg, #1e4524 0%, var(--bg-card-soft) 100%); border-radius: 12px;
       padding: 16px; margin-bottom: 20px; border: 1px solid var(--border);
     }
     .admin-panel.visible { display: block; }
-    .admin-panel h3 { color: var(--primary); margin-bottom: 12px; font-size: 1em; }
+    .admin-panel h3 { color: var(--primary-soft); margin-bottom: 12px; font-size: 1em; }
     .form-row {
       display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;
     }
     .form-row input, .form-row select {
       flex: 1; min-width: 120px; padding: 8px 12px;
-      background: #122612; border: 1px solid var(--border); border-radius: 8px;
+      background: #1e4524; border: 1px solid var(--border); border-radius: 8px;
       color: var(--text); font-size: 0.9em;
     }
     .form-row input:focus, .form-row select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(61, 163, 93,0.18); }
@@ -103,14 +105,14 @@
     .table-container { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
     th {
-      background: var(--bg-card-soft); color: var(--primary-hover); padding: 10px 8px;
-      text-align: left; border-bottom: 2px solid var(--accent); cursor: pointer;
+      background: var(--bg-card-soft); color: var(--primary-soft); padding: 10px 8px;
+      text-align: left; border-bottom: 2px solid var(--gold-deep); cursor: pointer;
     }
     th:hover { background: var(--accent-light); }
-    td { padding: 8px; border-bottom: 1px solid #2a4a28; }
+    td { padding: 8px; border-bottom: 1px solid #3e7240; }
     tr:hover { background: rgba(156, 233, 180,0.14); }
 
-    .might-value { color: var(--primary); font-weight: 600; }
+    .might-value { color: var(--primary-soft); font-weight: 600; }
     .growth-positive { color: var(--success); }
     .growth-negative { color: var(--danger); }
     .member-actions { display: flex; gap: 4px; }
@@ -130,7 +132,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .toast {
       position: fixed; bottom: 20px; right: 20px; z-index: 3000;
-      background: #122612; color: var(--text); padding: 12px 20px;
+      background: #1e4524; color: var(--text); padding: 12px 20px;
       border-radius: 8px; font-size: 0.9em; display: none;
       box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     }
@@ -163,28 +165,28 @@
     /* Tabs & Forms */
     .tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 12px; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
     .tab-btn-inner { padding: 8px 14px; background: none; border: none; color: var(--text-muted); font-size: 0.85em; font-weight: 600; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-    .tab-btn-inner:hover { color: var(--primary); }
-    .tab-btn-inner.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .tab-btn-inner:hover { color: var(--primary-soft); }
+    .tab-btn-inner.active { color: var(--primary-soft); border-bottom-color: var(--primary); }
     .tab-btn-inner[hidden] { display: none; }
     /* the two groups above the tabs */
     .tab-groups { display: flex; gap: 8px; width: 100%; margin-bottom: 4px; flex-wrap: wrap; }
     .tab-group {
       flex: 1; min-width: 200px; padding: 10px 14px; border-radius: 8px; cursor: pointer;
-      background: #122612; border: 1px solid var(--border); color: var(--text); font-size: 0.95em; font-weight: 600; transition: all 0.2s;
+      background: #1e4524; border: 1px solid var(--border); color: var(--text); font-size: 0.95em; font-weight: 600; transition: all 0.2s;
     }
-    .tab-group:hover { border-color: var(--primary); color: var(--primary); }
+    .tab-group:hover { border-color: var(--primary); color: var(--primary-soft); }
     .tab-group.active { background: var(--primary); border-color: var(--primary); color: #fff; }
     /* Member Configuration: the member list is not needed */
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
     .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px; }
-    .form-grid label { display: block; font-size: 0.75em; font-weight: 600; color: var(--primary); margin-bottom: 4px; text-transform: uppercase; }
-    .form-grid input, .form-grid select { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9em; background: #122612; color: var(--text); }
+    .form-grid label { display: block; font-size: 0.75em; font-weight: 600; color: var(--primary-soft); margin-bottom: 4px; text-transform: uppercase; }
+    .form-grid input, .form-grid select { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9em; background: #1e4524; color: var(--text); }
     .form-grid input:focus, .form-grid select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(61, 163, 93,0.18); }
     .form-grid .note { font-size: 0.7em; color: var(--text-muted); margin-top: 2px; }
     .stat-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 0 0 16px; }
     .stat-card { background: var(--bg-card-soft); border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center; }
-    .stat-card h3 { font-size: 0.8em; color: var(--primary); margin: 0 0 6px; }
+    .stat-card h3 { font-size: 0.8em; color: var(--primary-soft); margin: 0 0 6px; }
     .stat-card .value { font-size: 1.7em; font-weight: 700; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .status { margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: 0.85em; min-height: 1.5em; }
     .status.ok { background: rgba(51,204,63,0.18); color: #81c784; }
@@ -221,7 +223,7 @@
 </nav>
 
 <div class="login-gate" id="loginGate" style="max-width:500px;margin:80px auto;text-align:center;background:var(--bg-card);border-radius:16px;padding:40px 24px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-  <h2 style="color:var(--primary);margin-bottom:12px;">🔒 Login Required</h2>
+  <h2 style="color:var(--primary-soft);margin-bottom:12px;">🔒 Login Required</h2>
   <p style="color:var(--text-muted);margin-bottom:20px;">You need to be logged in to view the Admin page.</p>
   <button class="btn" onclick="handleLogin()" style="padding:12px 32px;font-size:1em;">🔑 Login</button>
 </div>
@@ -254,7 +256,7 @@
     </div>
 
     <div id="manualChestsTab" class="tab-panel">
-      <h3 style="margin:0 0 10px;color:var(--primary)">Manual Chests</h3>
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">Manual Chests</h3>
       <p style="font-size:0.82em;color:var(--text-muted);margin-bottom:12px;">Add chests the chesttracker missed or counted in the wrong period — e.g. crypts opened right after a period change that still went to the previous period. They get the points from 🏷️ Chest Points, like imported chests. Only you can see this tab.</p>
       <div class="form-grid" style="margin-bottom:8px;">
         <div><label for="mcPeriod">Period</label><select id="mcPeriod" onchange="ManualChests.load()"><option value="active">Active period</option><option value="previous">Previous period</option></select></div>
@@ -277,7 +279,7 @@
       </div>
       <div id="mcPeriodInfo" style="font-size:0.82em;color:var(--text-muted);margin-bottom:8px;"></div>
       <div id="mcStatus" class="status" style="display:none;"></div>
-      <h4 style="margin:14px 0 6px;color:var(--primary);">Added by hand</h4>
+      <h4 style="margin:14px 0 6px;color:var(--primary-soft);">Added by hand</h4>
       <div class="table-container"><table id="mcRecentTable" data-sortable style="font-size:0.85em;text-align:left;">
         <thead><tr><th style="text-align:left;padding:6px 8px;">When</th><th style="text-align:left;padding:6px 8px;">Period</th><th style="text-align:left;padding:6px 8px;">Member</th><th style="text-align:left;padding:6px 8px;">Chest</th><th style="text-align:center;padding:6px 8px;">#</th><th style="text-align:right;padding:6px 8px;">Points</th><th style="text-align:left;padding:6px 8px;">Note</th><th style="width:90px;"></th></tr></thead>
         <tbody id="mcRecent"><tr><td colspan="8" style="padding:8px;color:var(--text-muted);">Loading…</td></tr></tbody>
@@ -286,10 +288,10 @@
 
 
     <div id="chestNameFixTab" class="tab-panel active">
-      <h3 style="margin:0 0 10px;color:var(--primary)">Fix Chest Names</h3>
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">Fix Chest Names</h3>
       <p style="font-size:0.82em;color:var(--text-muted);margin-bottom:12px;">A player name the chest reader got wrong: move those chests to the right member. Only the chests of the chosen period change (for a real name change in the game, use ✏️ Rename in the member list on the Members page).</p>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px;">
-        <label for="cnfPeriod" style="margin:0;font-size:0.85em;font-weight:600;color:var(--primary);">Period</label>
+        <label for="cnfPeriod" style="margin:0;font-size:0.85em;font-weight:600;color:var(--primary-soft);">Period</label>
         <select id="cnfPeriod" style="width:auto;padding:6px 8px;border:1px solid var(--border);border-radius:6px;" onchange="ChestNameFix.load()"><option value="active">Active period</option><option value="previous">Previous period</option></select>
         <label style="margin:0 0 0 8px;display:flex;align-items:center;gap:4px;font-size:0.85em;"><input type="checkbox" id="cnfShowAll" onchange="ChestNameFix.render()"> show all names</label>
         <button class="btn secondary" style="margin:0;" onclick="ChestNameFix.load()">↻ Reload</button>
@@ -304,7 +306,7 @@
 
 
     <div id="ocrTab" class="tab-panel">
-      <h3 style="margin:0 0 10px;color:var(--primary)">OCR Corrections</h3>
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">OCR Corrections</h3>
       <p style="font-size:0.82em;color:var(--text-muted);margin-bottom:12px;">The chesttracker's list of words it reads wrong (player and chest names) and what they should be. Changes here reach the chesttracker at its next run; words it learns show up here after that run.</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px;">
         <input type="text" id="ocrSearch" placeholder="🔍 Search words or misreadings…" style="flex:1;min-width:200px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;" oninput="OcrCorrections.render()">
@@ -319,7 +321,7 @@
 
 
     <div id="removeChestsTab" class="tab-panel">
-      <h3 style="margin:0 0 10px;color:var(--primary)">Manage Chest Data</h3>
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">Manage Chest Data</h3>
       <p style="font-size:0.82em;color:var(--text-muted);margin-bottom:12px;text-align:left;">Every chest of the active or previous period, one by one. <b>Remove</b> the ones that shouldn't count — e.g. chests read under <b>Inactive Player</b>, under a name that is no clan member, or chests that aren't in the chest points list. Removed chests are kept under <b>Recent removals</b> and can be put back. A chest read with the wrong type, chest name or level? Select it and <b>correct</b> it: it is scored again against the chest points list, and the correction can be undone under <b>Recent corrections</b>.</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px;">
         <select id="rcPeriod" style="width:auto;flex:0 1 auto;padding:6px 8px;border:1px solid var(--border);border-radius:6px;" onchange="RemoveChests.load()"><option value="active">Active period</option><option value="previous">Previous period</option></select>
@@ -343,7 +345,7 @@
       <div id="rcPeriodInfo" style="font-size:0.82em;color:var(--text-muted);margin-bottom:6px;text-align:left;"></div>
       <div id="rcNames" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;"></div>
       <div id="rcStatus" class="status" style="display:none;"></div>
-      <div style="max-height:55vh;overflow:auto;border:1px solid var(--border);border-radius:8px;background:#122612;">
+      <div style="max-height:55vh;overflow:auto;border:1px solid var(--border);border-radius:8px;background:#1e4524;">
         <table style="width:100%;border-collapse:collapse;font-size:0.85em;text-align:left;">
           <thead><tr>
             <th style="width:34px;padding:6px 8px;position:sticky;top:0;z-index:1;"><input type="checkbox" id="rcAll" onchange="RemoveChests.toggleAll(this.checked)" title="Select all chests shown by the filters" style="width:auto;margin:0;"></th>
@@ -369,14 +371,14 @@
         <datalist id="rcTypeOptions"></datalist><datalist id="rcNameOptions"></datalist>
       </div>
       <h4 style="margin:16px 0 6px;text-align:left;">Recent removals</h4>
-      <div style="overflow:auto;border:1px solid var(--border);border-radius:8px;background:#122612;">
+      <div style="overflow:auto;border:1px solid var(--border);border-radius:8px;background:#1e4524;">
         <table style="width:100%;border-collapse:collapse;font-size:0.85em;text-align:left;">
           <thead><tr><th style="padding:6px 8px;">When</th><th style="padding:6px 8px;">By</th><th style="padding:6px 8px;">Period</th><th style="padding:6px 8px;">Players</th><th style="padding:6px 8px;text-align:right;">Chests</th><th style="padding:6px 8px;text-align:right;">Points</th><th style="padding:6px 8px;">Reason</th><th style="width:110px;"></th></tr></thead>
           <tbody id="rcRemovals"><tr><td colspan="8" style="padding:8px;color:var(--text-muted);">—</td></tr></tbody>
         </table>
       </div>
       <h4 style="margin:16px 0 6px;text-align:left;">Recent corrections</h4>
-      <div style="overflow:auto;border:1px solid var(--border);border-radius:8px;background:#122612;">
+      <div style="overflow:auto;border:1px solid var(--border);border-radius:8px;background:#1e4524;">
         <table style="width:100%;border-collapse:collapse;font-size:0.85em;text-align:left;">
           <thead><tr><th style="padding:6px 8px;">When</th><th style="padding:6px 8px;">By</th><th style="padding:6px 8px;">Period</th><th style="padding:6px 8px;">Players</th><th style="padding:6px 8px;">Change</th><th style="padding:6px 8px;text-align:right;">Chests</th><th style="padding:6px 8px;text-align:right;">Points</th><th style="padding:6px 8px;">Reason</th><th style="width:110px;"></th></tr></thead>
           <tbody id="rcCorrections"><tr><td colspan="9" style="padding:8px;color:var(--text-muted);">—</td></tr></tbody>
@@ -384,7 +386,7 @@
       </div>
     </div>
     <div id="chestValuesTab" class="tab-panel">
-      <h3 style="margin:0 0 10px;color:var(--primary)">Chest Point Values</h3>
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">Chest Point Values</h3>
       <p style="font-size:0.82em;color:var(--text-muted);margin-bottom:12px;">How many points each chest is worth (what used to be the "Chests 2.0" tab). A change re-scores the chests of the <b>active period</b> right away; closed periods keep the points they had.</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px;">
         <input type="text" id="cpvSearch" placeholder="🔍 Search type, chest or level…" style="flex:1;min-width:200px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;" oninput="ChestPointValues.render()">
@@ -395,7 +397,7 @@
       <div id="cpvInfo" style="font-size:0.82em;color:var(--text-muted);margin-bottom:8px;"></div>
       <div id="cpvStatus" class="status" style="display:none;"></div>
       <div id="cpvForm" style="display:none;margin-bottom:12px;background:var(--bg-card-soft);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
-        <div id="cpvFormTitle" style="font-size:0.85em;color:var(--primary-hover);font-weight:600;margin-bottom:8px;">Add a chest</div>
+        <div id="cpvFormTitle" style="font-size:0.85em;color:var(--primary-soft);font-weight:600;margin-bottom:8px;">Add a chest</div>
         <div class="form-grid" style="margin-bottom:0;">
           <div><label for="cpvType">Chest type</label><input type="text" id="cpvType" placeholder="e.g. Epic Crypt"></div>
           <div><label for="cpvName">Chest name</label><input type="text" id="cpvName" placeholder="e.g. Epic Chest"></div>
@@ -417,13 +419,13 @@
 
 
     <div id="exemptTab" class="tab-panel">
-      <h3 style="margin:0 0 10px;color:var(--primary)">Penalty Exemptions</h3>
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">Penalty Exemptions</h3>
       <p style="font-size:0.82em;color:var(--text-muted);margin-bottom:12px;">Members selected here are excluded from automated penalties and period-end underperformer reports.</p>
       <div class="form-grid" style="grid-template-columns: 1fr;">
         <div><label>Search</label><input type="text" id="exemptSearchInput" placeholder="Filter members..." oninput="renderExemptList()"></div>
       </div>
       <div id="exemptSummary" style="font-size:0.82em;color:var(--text-muted);margin-bottom:8px;"></div>
-      <div id="exemptList" style="max-height:340px;overflow-y:auto;margin:10px 0;border:1px solid var(--border);border-radius:8px;padding:8px;background:#122612;">Loading...</div>
+      <div id="exemptList" style="max-height:340px;overflow-y:auto;margin:10px 0;border:1px solid var(--border);border-radius:8px;padding:8px;background:#1e4524;">Loading...</div>
       <button class="btn" onclick="saveExemptMembers()">💾 Save Exemptions</button>
       <button class="btn secondary" style="margin-left:8px;" onclick="loadExemptMembers(true)">↻ Reload</button>
       <div id="exemptStatus" class="status"></div>
@@ -431,18 +433,18 @@
 
 
     <div id="pointTargetsTab" class="tab-panel">
-      <h3 style="margin:0 0 10px;color:var(--primary)">Point Targets</h3>
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">Point Targets</h3>
       <p style="font-size:0.82em;color:var(--text-muted);margin-bottom:12px;">A member's own chest points target for one period (e.g. a shortfall carried over, or a lower target for a new member). Leave it empty to use the period's target. Only current members are listed; targets of members who left stay as they are.</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:8px;">
         <div style="flex:1;min-width:220px;"><label>Period</label><select id="ptPeriodSelect" onchange="PointTargets.load()"><option value="">Loading periods...</option></select></div>
         <div style="flex:1;min-width:180px;"><label>Search</label><input type="text" id="ptSearchInput" placeholder="Filter members..." oninput="PointTargets.render()"></div>
       </div>
       <div id="ptSummary" style="font-size:0.82em;color:var(--text-muted);margin-bottom:8px;"></div>
-      <div id="ptTargetsList" style="max-height:55vh;overflow-y:auto;margin:10px 0;border:1px solid var(--border);border-radius:8px;padding:8px;background:#122612;">Loading...</div>
+      <div id="ptTargetsList" style="max-height:55vh;overflow-y:auto;margin:10px 0;border:1px solid var(--border);border-radius:8px;padding:8px;background:#1e4524;">Loading...</div>
       <button class="btn" onclick="PointTargets.save()">💾 Save Point Targets</button>
       <button class="btn secondary" style="margin-left:8px;" onclick="PointTargets.load()">↻ Reload</button>
       <div id="ptStatus" class="status"></div>
-      <h4 style="margin:16px 0 6px;color:var(--primary);">Point penalties in this period</h4>
+      <h4 style="margin:16px 0 6px;color:var(--primary-soft);">Point penalties in this period</h4>
       <p style="font-size:0.8em;color:var(--text-muted);margin:0 0 8px;">Applied point penalties are included in the targets above. Until the fix of October 2026, applying a points penalty counted it twice (and once more with every new Apply or edit of the event). A member marked ⚠️ has a target without the penalty above the period target: either an own target you set, or a leftover of that — then correct the target above.</p>
       <div class="table-container"><table id="ptPenaltyTable" data-sortable data-sort-col="0" style="font-size:0.85em;text-align:left;">
         <thead><tr><th style="text-align:left;padding:6px 8px;">Member</th><th style="text-align:left;padding:6px 8px;">Penalties (event)</th><th style="text-align:right;padding:6px 8px;">Target</th><th style="text-align:right;padding:6px 8px;">Without penalty</th><th></th></tr></thead>
@@ -452,7 +454,7 @@
 
 
     <div id="linkFormerTab" class="tab-panel">
-      <h3 style="margin:0 0 10px;color:var(--primary)">🔗 Link Former Members</h3>
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">🔗 Link Former Members</h3>
       <p style="font-size:0.85em;color:var(--text-muted);margin:0 0 12px;">Someone who left and came back (maybe more than once) and was added as a new member? Pick them as the current member and tick their entries on the Former Members list. Their history (chests, troops, heroes, events, warnings, …) then counts for the current member, their old login comes along if they don't have one, and each earlier membership is kept on their profile. Entries under another name are renamed to the current member's name.</p>
       <div id="linkFormerPanel"></div>
     </div>
@@ -463,13 +465,13 @@
 
 
     <div id="accountsTab" class="tab-panel">
-      <h3 style="margin:0 0 10px;color:var(--primary)">Linked Google Accounts</h3>
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">Linked Google Accounts</h3>
       <p style="font-size:0.82em;color:var(--text-muted);margin-bottom:12px;">Link members to Google accounts so they can sign in and view their own profile. The same email can be used for alt accounts.</p>
       <div class="form-grid" style="grid-template-columns: 1fr;">
         <div><label>Search</label><input type="text" id="accountsSearchInput" placeholder="Filter members or emails..." oninput="renderMemberAccounts()"></div>
       </div>
       <div id="accountsSummary" style="font-size:0.82em;color:var(--text-muted);margin-bottom:8px;"></div>
-      <div id="accountsList" style="max-height:360px;overflow-y:auto;margin:10px 0;border:1px solid var(--border);border-radius:8px;padding:8px;background:#122612;">Loading...</div>
+      <div id="accountsList" style="max-height:360px;overflow-y:auto;margin:10px 0;border:1px solid var(--border);border-radius:8px;padding:8px;background:#1e4524;">Loading...</div>
       <button class="btn" onclick="saveMemberAccounts()">💾 Save Linked Accounts</button>
       <button class="btn secondary" style="margin-left:8px;" onclick="loadMemberAccounts(true)">↻ Reload</button>
       <div id="accountsStatus" class="status"></div>
@@ -477,7 +479,7 @@
 
 
     <div id="superiorsTab" class="tab-panel">
-      <h3 style="margin:0 0 10px;color:var(--primary)">Superiors</h3>
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">Superiors</h3>
       <p style="font-size:0.82em;color:var(--text-muted);margin-bottom:12px;">Superiors can use the management pages (Events, Members, Warnings, Bank, Profiling, …) and make changes. Tick a member to make them a superior: the Google account(s) linked to them on <b>🔐 Login Accounts</b> get the rights, and lose them when the member leaves the clan. Logins that aren't clan members go under <b>Extra e-mails</b>. Only you can see this list; you are always a superior yourself.</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px;">
         <input type="text" id="superiorsSearchInput" placeholder="🔍 Filter members…" style="flex:1;min-width:200px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;" oninput="Superiors.render()">
@@ -487,7 +489,7 @@
       <div id="superiorsStatus" class="status" style="display:none;"></div>
       <div id="superiorsSummary" style="font-size:0.82em;color:var(--text-muted);margin-bottom:8px;"></div>
       <div id="superiorsList" style="max-height:40vh;overflow-y:auto;border:1px solid var(--border);border-radius:8px;padding:10px;background:var(--bg-card-soft);"></div>
-      <h4 style="margin:16px 0 6px;color:var(--primary);">Extra e-mails</h4>
+      <h4 style="margin:16px 0 6px;color:var(--primary-soft);">Extra e-mails</h4>
       <p style="font-size:0.8em;color:var(--text-muted);margin:0 0 8px;">Google logins with superior rights that aren't linked to a clan member. The note is just for you (e.g. who it is).</p>
       <div id="superiorEmailsList" style="border:1px solid var(--border);border-radius:8px;padding:10px;background:var(--bg-card-soft);"></div>
       <button class="btn secondary" style="margin-top:8px;" onclick="Superiors.addEmail()">➕ Add e-mail</button>
@@ -1261,7 +1263,7 @@
         if (!rows.length) { box.innerHTML = '<div style="padding:8px;font-size:0.85em;color:var(--text-muted);">' + (list.length ? 'Nothing matches.' : 'The list is empty until the chesttracker has synced it once.') + '</div>'; return; }
         box.innerHTML = rows.map(c =>
           '<div class="ocr-word" data-word="' + attr(c.word) + '" style="border-top:1px solid var(--border);padding:8px 4px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">' +
-            '<strong style="color:var(--primary-hover);min-width:160px;">' + esc(c.word) + '</strong>' +
+            '<strong style="color:var(--primary-soft);min-width:160px;">' + esc(c.word) + '</strong>' +
             c.variants.map(v => '<span style="background:var(--bg-card-soft);border:1px solid var(--border);border-radius:12px;padding:2px 4px 2px 10px;font-size:12px;">' + esc(v) +
               ' <button title="Remove this misreading" data-ocr-rmv="' + attr(v) + '" style="background:none;border:none;color:#ef5350;cursor:pointer;font-size:0.85em;">×</button></span>').join('') +
             '<input type="text" placeholder="+ misreading" data-ocr-add style="width:140px;padding:4px 8px;font-size:12px;">' +
