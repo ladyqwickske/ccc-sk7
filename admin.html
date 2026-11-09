@@ -242,7 +242,7 @@
       <div class="tab-groups">
         <button class="tab-group active" data-group="chestdata" onclick="switchGroup('chestdata')">📥 Chest data</button>
         <button class="tab-group" data-group="rules" onclick="switchGroup('rules')">🏷️ Rules</button>
-        <button class="tab-group" data-group="clans" onclick="switchGroup('clans')">🔗 Former members</button>
+        <button class="tab-group" data-group="clans" onclick="switchGroup('clans')">🔁 Between clans</button>
         <button class="tab-group" data-group="access" onclick="switchGroup('access')">🔐 Access</button>
       </div>
       <button class="tab-btn-inner" data-group="chestdata" data-tab="manualChestsTab" id="manualChestsTabBtn" style="display:none" onclick="switchTab('manualChestsTab', this)">➕ Manual Chests</button>
@@ -253,6 +253,7 @@
       <button class="tab-btn-inner" hidden data-group="rules" data-tab="exemptTab" onclick="switchTab('exemptTab', this)">🛡️ Exemptions</button>
       <button class="tab-btn-inner" hidden data-group="rules" data-tab="pointTargetsTab" onclick="switchTab('pointTargetsTab', this)">🎯 Point Targets</button>
       <button class="tab-btn-inner" hidden data-group="clans" data-tab="linkFormerTab" onclick="switchTab('linkFormerTab', this)">🔗 Link Former Members</button>
+      <button class="tab-btn-inner" hidden data-group="clans" data-tab="transfersTab" id="transfersTabBtn" onclick="switchTab('transfersTab', this)">🔁 Member Transfers</button>
       <button class="tab-btn-inner" hidden data-group="access" data-tab="accountsTab" onclick="switchTab('accountsTab', this)">🔐 Login Accounts</button>
       <button class="tab-btn-inner" hidden data-group="access" data-tab="superiorsTab" id="superiorsTabBtn" style="display:none" onclick="switchTab('superiorsTab', this)">👑 Superiors</button>
       <button class="tab-btn-inner" hidden data-group="access" data-tab="emailSettingsTab" id="emailSettingsTabBtn" style="display:none" onclick="switchTab('emailSettingsTab', this)">📧 E-mails</button>
@@ -463,6 +464,13 @@
     </div>
 
 
+    <div id="transfersTab" class="tab-panel">
+      <h3 style="margin:0 0 10px;color:var(--primary-soft)">🔁 Member Transfers</h3>
+      <p style="font-size:0.85em;color:var(--text-muted);margin:0 0 12px;">Players who move between cCc 276 SK7 and its academy, cCc 276 SK7 Academy: ask the other clan for their profile (memberships, troop and hero levels, chest points, events, warnings), or move them here, and answer the other clan's requests. Nothing is shared or moved until a superior of that clan approves.</p>
+      <div id="transfersPanel"></div>
+    </div>
+
+
     <div id="transfersPanel"></div>
     </div>
 
@@ -563,7 +571,7 @@
     if (window.LinkFormer) {
       window.LinkFormer.init({ container: 'linkFormerPanel', currentMembers: () => membersData.map(m => m.name), onDone: refresh });
     }
-    // cCc 276 SK7 is not connected to the other clans: no Member Transfers tab
+    // Member Transfers: only between cCc 276 SK7 and cCc 276 SK7 Academy (the Workers' TRANSFER_CLANS)
     if (window.MemberTransfers && document.getElementById('transfersTabBtn')) {
       window.MemberTransfers.init({ container: 'transfersPanel', badge: 'transfersTabBtn', onLevelsCopied: refresh });
       if (isLoggedIn) setTimeout(() => window.MemberTransfers.check(), 1500); // waiting requests from other clans → count on the tab

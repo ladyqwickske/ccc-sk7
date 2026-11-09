@@ -385,7 +385,7 @@ window.HELP_CONTENT = {
       icon: 'admin.png',
       title: 'Admin',
       who: 'Superiors',
-      summary: 'The settings of the clan: chest data and corrections, targets and exemptions, former members, and who may sign in.',
+      summary: 'The settings of the clan: chest data and corrections, targets and exemptions, members who move between clans, and who may sign in.',
       parts: [
         { title: '📥 Chest data', list: [
           '**🔀 Move Chests**: move chests from one name to the right member, for example chests saved under a name the chesttracker read wrong.',
@@ -397,8 +397,9 @@ window.HELP_CONTENT = {
           '**🛡️ Exemptions**: members who get no automatic penalties, for example utility accounts. You can give dates. **Vacation**: the member still gets penalties, but more of their extra points carry over to the next period, so they can collect points before the holiday.',
           '**🎯 Point Targets**: a member\'s own target for one period. Most targets here are calculated automatically: at every period change a shortfall or a surplus is carried over, and point penalties from events are added. Only change a target if you want to override that, for example a lower target for a new member. Leave it empty to use the normal target. Below the list you see the point penalties of that period.'
         ] },
-        { title: '🔗 Former members', list: [
-          '**🔗 Link Former Members**: a member who came back and was added as a new member. Link their old history to them.'
+        { title: '🔁 Between clans', list: [
+          '**🔗 Link Former Members**: a member who came back and was added as a new member. Link their old history to them.',
+          '**🔁 Member Transfers**: a player who moves between our clan and cCc 276 SK7 Academy (the only clan connected to ours). Ask the other clan to transfer the player (or only for their profile), and answer their requests. Nothing is shared or moved until a superior of the other clan approves it. With **🔁 Move the member**, approving removes the player there (reason "Transferred to …", end date = the transfer date) and adds them here with that date as join date, with their troop, hero and captain levels.'
         ] },
         { title: '🔐 Access', list: [
           '**🔐 Login Accounts**: link a member to a Google account, so they can sign in and see their profile. One Google account can be linked to several members (alt accounts).'
@@ -432,6 +433,21 @@ window.HELP_CONTENT = {
           'Open **🔐 Access → 🔐 Login Accounts**.',
           'Type their Google e-mail next to their name.',
           'Click **💾 Save Linked Accounts**. They can now sign in and open **My Profile**.'
+        ] },
+        { q: 'A player moves to us from cCc 276 SK7 Academy.', steps: [
+          'Open **🔁 Between clans → 🔁 Member Transfers**. Under **📨 Ask another clan for a member (transfer) or their profile**, choose cCc 276 SK7 Academy and type their name in that clan.',
+          'Their name here is different? Type it in **Their name here**. Fill in the **Transfer date**: the day they joined us.',
+          'Did you add them on the Members page already? Pick that member under **Their name here** (it suggests our members). Then nothing is added twice, and the login linked here is kept.',
+          'Leave **🔁 Move the member** ticked. Click **📨 Send request** and confirm.',
+          'A superior of cCc 276 SK7 Academy approves the request on their **🔁 Member Transfers** page.',
+          'Then the player is removed there and added here, with the transfer date as join date. Their troop, hero and captain levels are copied, and their login (Google account) is linked if they have none here. You do not need to add them on the Members page.',
+          'Under **📤 Our requests** you see what was done. A ⚠️ line means something is not finished yet: it is tried again each time this page is opened.'
+        ] },
+        { q: 'cCc 276 SK7 Academy asks to transfer one of our members.', steps: [
+          'Open **🔁 Between clans → 🔁 Member Transfers**. The request is under **📥 Requests from other clans**, with **🔁 Transfer on** and the date.',
+          'Check **Which of our members?** and click **✅ Approve**. Confirm.',
+          'The member is moved to Former Members, with the transfer date as end date and the reason "Transferred to" the other clan.',
+          'Not our player, or not leaving? Click **⛔ Decline**.'
         ] }
       ]
     },
