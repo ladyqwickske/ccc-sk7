@@ -700,13 +700,13 @@
       const runningCount = items.filter(o => o.start <= now).length;
       const top = items.slice(0, Math.max(1, runningCount));
       const rest = items.slice(top.length);
-      const restShown = rotationAll[kind] ? rest : rest.filter(o => o.start <= now + 24 * 3600);
+      const restShown = rotationAll[kind] ? rest : rest.slice(0, 5);   // the next 5, "Show N more" for the rest
       const openAttr = rotationOpen[kind] ? ' open' : '';
       el.innerHTML = `<h3>${title}</h3>` + top.map(o => rotationItem(o, now)).join('') + (rest.length
         ? `<details class="rotation-next"${openAttr} ontoggle="rotationOpen['${kind}'] = this.open"><summary>Next ${kind === 'forest' ? 'forest' : 'mini'} tournaments (${rest.length})</summary>`
           + restShown.map(o => rotationItem(o, now)).join('')
           + (rest.length > restShown.length || rotationAll[kind]
-            ? `<button class="rotation-more" onclick="rotationAll['${kind}'] = !rotationAll['${kind}']; renderRotation();">${rotationAll[kind] ? 'Next 24 hours only' : `Show ${rest.length - restShown.length} more (next days)`}</button>` : '')
+            ? `<button class="rotation-more" onclick="rotationAll['${kind}'] = !rotationAll['${kind}']; renderRotation();">${rotationAll[kind] ? 'Only the next 5' : `Show ${rest.length - restShown.length} more`}</button>` : '')
           + '</details>' : '');
     }
   }
