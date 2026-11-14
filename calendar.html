@@ -164,6 +164,23 @@
     }
     .upcoming-item .event-name { font-weight: 600; }
     .upcoming-item .event-dates { font-size: 0.85em; color: var(--text-muted); }
+    /* Voltron's forest and mini tournaments (the season kingdom's rotation), next to the calendar */
+    .container:has(.cal-side:not([style*="display: none"])) { max-width: 1440px; }
+    .cal-layout { display: flex; gap: 18px; align-items: flex-start; }
+    .cal-main { flex: 1 1 auto; min-width: 0; }
+    .cal-side { flex: 0 0 300px; max-width: 300px; }
+    @media (max-width: 900px) {
+      .cal-layout { flex-direction: column; }
+      .cal-side { flex-basis: auto; max-width: none; width: 100%; }
+    }
+    .rotation-list { margin-bottom: 16px; }
+    .rotation-list h3 { color: var(--primary-soft); margin: 0 0 8px; font-size: 1.05em; }
+    .rotation-item { display: flex; flex-direction: column; gap: 2px; }
+    .rotation-item.running { border-left: 4px solid var(--primary-soft); font-size: 1.02em; }
+    .rotation-note { font-size: 0.78em; color: var(--text-muted); }
+    .rotation-when { font-size: 0.85em; color: var(--text-muted); }
+    .rotation-state { font-size: 0.8em; font-weight: 600; color: var(--primary-soft); }
+    .rotation-more { margin-top: 4px; background: none; border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 0.85em; }
 
     .loading { text-align: center; padding: 40px; color: var(--text-muted); }
     .spinner {
@@ -232,6 +249,8 @@
   <h1>Calendar</h1>
   <p class="subtitle">Event Schedule Overview</p>
 
+  <div class="cal-layout">
+  <div class="cal-main">
   <div class="month-nav">
     <button onclick="changeMonth(-1)">◀</button>
     <span class="month-label" id="monthLabel"></span>
@@ -250,12 +269,23 @@
     <div class="day-header">Sat</div>
     <div class="day-header">Sun</div>
   </div>
+  </div>
+
+  <!-- Voltron's forest and mini tournaments next to the calendar: two lists, the running one on
+       top, gone once they're over -->
+  <aside class="cal-side" id="rotationSection" style="display:none">
+    <div class="rotation-list" id="rotationForest"></div>
+    <div class="rotation-list" id="rotationMini"></div>
+    <div class="rotation-note">From Voltron's season calendar, in your own time zone. Updated daily by the chesttracker.</div>
+  </aside>
+  </div>
 
   <!-- Upcoming Events -->
   <div class="upcoming" id="upcomingSection">
     <h3>📌 Upcoming &amp; Active Events</h3>
     <div id="upcomingList"></div>
   </div>
+
 </div>
 
 <!-- Event Detail Popup -->
@@ -391,7 +421,7 @@
     if (!window.GAS_WEB_APP_URL) return;
     fetch(window.GAS_WEB_APP_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'getVoltronCalendar' }) })
       .then(r => r.json())
-      .then(res => { if (res && res.success) { LAST_VOLTRON = res; setVoltronCalendar(res); loadEvents(); } })
+      .then(res => { if (res && res.success) { LAST_VOLTRON = res; setVoltronCalendar(res); loadEvents(); setRotation(res.rotation); } })
       .catch(() => { /* no Voltron calendar: the recurring rhythm only */ });
   }
 
@@ -618,6 +648,51 @@
     const m = String(d.getUTCMonth() + 1).padStart(2, '0');
     const day = String(d.getUTCDate()).padStart(2, '0');
     return `${y}-${m}-${day}`;
+  }
+
+  // FOREST & MINI TOURNAMENTS (getVoltronCalendar → rotation: [{ name, start, end, kind }], UTC
+  // seconds). Shown while running or upcoming; an ended one drops off at the next refresh.
+  let ROTATION = [], rotationAll = { forest: false, mini: false }, rotationTimer = null;
+  function setRotation(list) {
+    ROTATION = (Array.isArray(list) ? list : []).filter(o => o && o.name && o.end > o.start);
+    renderRotation();
+    if (!rotationTimer && ROTATION.length) rotationTimer = setInterval(renderRotation, 30000);
+  }
+  function rotationIn(sec) {
+    const m = Math.max(0, Math.round(sec / 60)), d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60), mm = m % 60;
+    return d ? `${d}d ${h}h` : h ? `${h}h ${mm}m` : `${mm}m`;
+  }
+  function rotationTime(sec, withDay) {
+    return new Date(sec * 1000).toLocaleString(undefined, withDay
+      ? { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }
+      : { hour: '2-digit', minute: '2-digit' });
+  }
+  function renderRotation() {
+    const box = document.getElementById('rotationSection');
+    if (!box) return;
+    const now = Date.now() / 1000;
+    const live = ROTATION.filter(o => o.end > now);
+    box.style.display = live.length ? '' : 'none';
+    for (const [kind, id, title] of [['forest', 'rotationForest', '🌲 Forest tournaments'], ['mini', 'rotationMini', '⚔️ Mini tournaments']]) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      // the running one(s) on top, then the next ones by start time
+      const items = live.filter(o => o.kind === kind)
+        .sort((a, b) => ((b.start <= now) - (a.start <= now)) || a.start - b.start);
+      if (!items.length) { el.innerHTML = ''; continue; }
+      const limit = rotationAll[kind] ? Infinity : now + 24 * 3600;
+      const shown = items.filter(o => o.start <= limit);
+      const more = items.length - shown.length;
+      el.innerHTML = `<h3>${title}</h3>` + shown.map(o => {
+        const running = o.start <= now;
+        return `<div class="upcoming-item rotation-item${running ? ' running' : ''}">
+          <span class="event-name">${escapeHtml(o.name)}</span>
+          <span class="rotation-when">${escapeHtml(rotationTime(o.start, true))} – ${escapeHtml(rotationTime(o.end, false))}</span>
+          <span class="rotation-state">${running ? 'running · ends in ' + rotationIn(o.end - now) : 'in ' + rotationIn(o.start - now)}</span>
+        </div>`;
+      }).join('') + (more > 0 || rotationAll[kind]
+        ? `<button class="rotation-more" onclick="rotationAll['${kind}'] = !rotationAll['${kind}']; renderRotation();">${rotationAll[kind] ? 'Next 24 hours only' : `Show ${more} more (next days)`}</button>` : '');
+    }
   }
 
   // UPCOMING
