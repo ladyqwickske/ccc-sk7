@@ -227,6 +227,30 @@
       .event-dot { font-size: 0.6em; }
       .month-nav .month-label { font-size: 1em; min-width: 140px; }
     }
+
+    /* Phones: the month always fits the screen. A day's events are coloured bars (no room for
+       names); tapping a day lists them in full under the calendar (today is picked at first). */
+    .day-agenda { display: none; }
+    @media (max-width: 600px) {
+      .container { padding: 16px 8px; }
+      .calendar-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; }
+      .day-header { font-size: 0.72em; padding: 6px 0; }
+      .day-cell { min-width: 0; min-height: 52px; padding: 3px 3px 4px; cursor: pointer; }
+      .day-cell .day-number { font-size: 0.8em; margin-bottom: 3px; }
+      .day-cell .event-dot { height: 5px; padding: 0; margin: 0 0 2px; font-size: 0; border-radius: 3px;
+        background: currentColor !important; pointer-events: none; }
+      .day-cell.selected { outline: 2px solid var(--primary); outline-offset: -2px; }
+      .day-agenda { display: block; margin: 12px 0 4px; }
+      .day-agenda h4 { color: var(--primary); font-size: 0.95em; margin: 0 0 8px; }
+      .day-agenda .event-dot { display: flex; align-items: center; justify-content: space-between; gap: 8px;
+        font-size: 0.9em; padding: 9px 12px; margin: 0 0 6px; border-radius: 8px; white-space: normal; }
+      .day-agenda .agenda-tag { font-size: 0.78em; opacity: 0.8; white-space: nowrap; }
+      .day-agenda .agenda-empty { color: var(--text-muted); font-size: 0.85em; }
+      .month-nav { gap: 6px; flex-wrap: wrap; }
+      .month-nav button { padding: 6px 12px; }
+      .month-nav .month-label { min-width: 0; flex: 1 1 auto; font-size: 1em; }
+      .upcoming-item { flex-direction: column; align-items: flex-start; gap: 2px; }
+    }
   </style>
 </head>
 <body>
@@ -614,6 +638,7 @@
   function createDayCell(dayNum, dateStr, isOtherMonth, isToday) {
     const cell = document.createElement('div');
     cell.className = 'day-cell' + (isOtherMonth ? ' other-month' : '') + (isToday ? ' today' : '');
+    cell.dataset.date = dateStr;
     cell.innerHTML = `<div class="day-number">${dayNum}</div>`;
 
     // Find events that span this date
@@ -781,6 +806,63 @@
     t.className = 'toast ' + (type || ''); t.style.display = 'block';
     setTimeout(() => { t.style.display = 'none'; }, 3000);
   }
+</script>
+
+<script>
+/* Phones (≤ 600 px): the month shows each day's events as coloured bars; tapping a day lists
+   them in full under the calendar, and tapping one there opens it as usual. When a month is
+   shown, the day picked before (or today, or the 1st) is listed. */
+(function () {
+  var phone = window.matchMedia('(max-width: 600px)');
+  var grid = document.getElementById('calendarGrid');
+  if (!grid) return;
+  var agenda = document.createElement('div');
+  agenda.className = 'day-agenda';
+  agenda.id = 'dayAgenda';
+  grid.parentNode.insertBefore(agenda, grid.nextSibling);
+  var picked = null;
+  function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+  function title(dateStr) {
+    return new Date(dateStr + 'T00:00:00Z').toLocaleDateString(undefined,
+      { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
+  }
+  function show(cell) {
+    grid.querySelectorAll('.day-cell.selected').forEach(function (c) { c.classList.remove('selected'); });
+    if (!cell || !cell.dataset.date) { agenda.innerHTML = ''; return; }
+    cell.classList.add('selected');
+    picked = cell.dataset.date;
+    agenda.innerHTML = '<h4>' + esc(title(picked)) + '</h4>';
+    var dots = cell.querySelectorAll('.event-dot');
+    if (!dots.length) { agenda.insertAdjacentHTML('beforeend', '<div class="agenda-empty">No events this day.</div>'); return; }
+    dots.forEach(function (dot) {
+      var text = (dot.textContent || '').trim() || dot.title || '', tag = '';
+      if (/^▶\s*/.test(text)) { text = text.replace(/^▶\s*/, ''); tag = 'starts'; }
+      else if (/\s*◀$/.test(text)) { text = text.replace(/\s*◀$/, ''); tag = 'ends'; }
+      else if (dot.classList.contains('ev-crypting-bar')) tag = 'ongoing';
+      var item = document.createElement('div');
+      item.className = dot.className.replace(/\bev-crypting-bar\b|\bev-ends\b/g, '').trim();
+      item.style.cursor = 'pointer';
+      item.innerHTML = '<span>' + esc(text) + '</span>' + (tag ? '<span class="agenda-tag">' + tag + '</span>' : '');
+      item.onclick = function () { if (dot.onclick) dot.onclick({ stopPropagation: function () {} }); };
+      agenda.appendChild(item);
+    });
+  }
+  function pickDefault() {
+    if (!phone.matches) { show(null); return; }
+    show((picked && grid.querySelector('.day-cell[data-date="' + picked + '"]'))
+      || grid.querySelector('.day-cell.today') || grid.querySelector('.day-cell:not(.other-month)'));
+  }
+  grid.addEventListener('click', function (e) {
+    if (!phone.matches) return;
+    var cell = e.target.closest('.day-cell');
+    if (!cell) return;
+    e.stopPropagation();
+    show(cell);
+  }, true);
+  new MutationObserver(pickDefault).observe(grid, { childList: true });
+  if (phone.addEventListener) phone.addEventListener('change', pickDefault); else phone.addListener(pickDefault);
+  pickDefault();
+})();
 </script>
 </body>
 </html>
