@@ -184,7 +184,6 @@
     .rotation-item { display: flex; flex-direction: column; gap: 2px; }
     .rotation-item.running { border-left: 4px solid var(--primary-soft); font-size: 1.02em; }
     .rotation-next > summary { cursor: pointer; font-size: 0.85em; color: var(--text-muted); margin: 2px 0 6px; }
-    .rotation-note { font-size: 0.78em; color: var(--text-muted); }
     .rotation-when { font-size: 0.85em; color: var(--text-muted); }
     .rotation-state { font-size: 0.8em; font-weight: 600; color: var(--primary-soft); }
     .rotation-more { margin-top: 4px; background: none; border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 0.85em; }
@@ -307,7 +306,6 @@
   <aside class="cal-side" id="rotationSection" style="display:none">
     <div class="rotation-list" id="rotationForest"></div>
     <div class="rotation-list" id="rotationMini"></div>
-    <div class="rotation-note">From Voltron's season calendar, in your own time zone. Updated daily by the chesttracker.</div>
   </aside>
   </div>
 
@@ -349,8 +347,6 @@
   // First dates: the cCc SK6 rhythm, started on Ruthless Slaughter = 2026-11-10 (to be confirmed).
    var RECURRING = [
       { title: 'Ruthless Slaughter', firstStart: '2026-11-10', duration: 1, interval: 5, color: 'ev-slaughter',       category: 'Daily Event', description: 'Ruthless Slaughter — the first day of each 5-day period.' },
-      { title: 'Crypt Start',        firstStart: '2026-11-10', duration: 1, interval: 5, color: 'ev-crypting',        category: 'Crypting',    description: 'Crypting period starts — same day as Ruthless Slaughter.' },
-      { title: 'Crypt End',          firstStart: '2026-11-14', duration: 1, interval: 5, color: 'ev-crypting',        category: 'Crypting',    description: 'Crypting period ends — the day before the next Ruthless Slaughter.' },
       { title: 'The Great Hunt',     firstStart: '2026-11-11', duration: 1, interval: 5, color: 'ev-great-hunt',      category: 'Daily Event', description: 'The Great Hunt — every 5 days.' },
       { title: 'KvK',                firstStart: '2026-11-11', duration: 1, interval: 5, color: 'ev-kvk',             category: 'Major Event', description: 'Kingdom vs Kingdom — every 5 days.' },
       { title: 'Doomsday',           firstStart: '2026-11-12', duration: 1, interval: 5, color: 'ev-doomsday',        category: 'Daily Event', description: 'Doomsday — every 5 days.' },
@@ -467,7 +463,7 @@
       const known = VOLTRON[def.title];
       let occ;
       if (known && known.length) {
-        const note = ' Dates from Voltron\'s calendar' + (VOLTRON_INFO && VOLTRON_INFO.kingdom ? ' (kingdom ' + VOLTRON_INFO.kingdom + ')' : '') + '.';
+        const note = ' Dates from the game calendar' + (VOLTRON_INFO && VOLTRON_INFO.kingdom ? ' (kingdom ' + VOLTRON_INFO.kingdom + ')' : '') + '.';
         for (const o of known) {
           if (o.start <= rangeEndDate && o.end >= rangeStartDate) {
             events.push({
