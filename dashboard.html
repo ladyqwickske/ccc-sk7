@@ -207,6 +207,46 @@
     .chest-ref-level b { color: var(--primary-strong); margin-left: 4px; }
     .chest-ref-empty { padding: 12px 6px; color: var(--text-muted); font-size: 0.9em; }
 
+    /* Player Chests (superiors only): one player's chests over up to 6 months */
+    .modal.pc-modal { max-width: 640px; }
+    .pc-form { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-bottom: 10px; }
+    .pc-form label { display: flex; flex-direction: column; gap: 4px; font-size: 0.8em; color: var(--text-muted); }
+    .pc-form .pc-player { grid-column: 1 / -1; }
+    .pc-form input { width: 100%; padding: 9px 10px; background: #1e4524; border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 0.95em; color-scheme: dark; }
+    .pc-form input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(61, 163, 93,0.18); }
+    .modal .pc-form input[type="text"] { margin-bottom: 0; font-size: 0.95em; }
+    .pc-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .pc-presets button, .pc-show { background: var(--bg-card-soft); color: var(--text); border: 1px solid var(--border);
+      border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.82em; }
+    .pc-presets button:hover { border-color: var(--primary); color: var(--primary-soft); }
+    .pc-show { background: var(--primary); color: #fff; border-color: var(--primary); font-weight: 600; padding: 9px 18px; font-size: 0.9em; }
+    .pc-show:hover { background: var(--primary-hover); }
+    .pc-show:disabled { opacity: 0.6; cursor: default; }
+    .pc-note { font-size: 0.78em; color: var(--text-muted); margin: 6px 0 12px; }
+    .pc-error { color: var(--danger); font-size: 0.88em; margin: 8px 0; }
+    .pc-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0; }
+    .pc-summary div { background: var(--bg-card-soft); border: 1px solid var(--border); border-radius: 10px; padding: 8px; text-align: center; }
+    .pc-summary b { display: block; font-size: 1.35em; color: var(--gold); }
+    .pc-summary span { font-size: 0.75em; color: var(--text-muted); }
+    .pc-table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+    .pc-table th { text-align: left; color: var(--text-muted); font-weight: 600; font-size: 0.8em; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+    .pc-table td { padding: 7px 8px; border-bottom: 1px solid rgba(90, 156, 82, 0.35); }
+    .pc-table th.num, .pc-table td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .pc-type td:first-child { font-weight: 600; color: var(--primary-soft); }
+    .pc-type.expandable { cursor: pointer; }
+    .pc-type.expandable:hover td { background: var(--bg-card-soft); }
+    .pc-type .toggle-icon { display: inline-block; width: 12px; font-size: 0.75em; color: var(--primary-strong); transition: transform 0.15s; }
+    .pc-type.expanded .toggle-icon { transform: rotate(90deg); }
+    .pc-level { display: none; }
+    .pc-level.visible { display: table-row; }
+    .pc-level td { color: var(--text-muted); font-size: 0.92em; }
+    .pc-level td:first-child { padding-left: 30px; }
+    .pc-total td { font-weight: 700; border-top: 2px solid var(--border); border-bottom: none; }
+    .pc-periods { margin-top: 14px; font-size: 0.82em; color: var(--text-muted); }
+    .pc-periods summary { cursor: pointer; color: var(--primary-soft); }
+    .pc-periods .pc-table { font-size: 0.95em; margin-top: 6px; }
+    @media (max-width: 480px) { .pc-form { grid-template-columns: 1fr; } .pc-summary b { font-size: 1.1em; } }
     /* Chest Points Ref Button */
     .ref-btn {
       background: var(--bg-card-soft); color: var(--primary-soft); border: 1px solid var(--primary);
@@ -307,6 +347,7 @@
     <button class="active" onclick="selectPeriod('active', this)">Active Period</button>
     <button onclick="selectPeriod('previous', this)">Previous Period</button>
     <button class="ref-btn" onclick="openChestPointsRef()">📋 Chest Points</button>
+    <button class="ref-btn" id="playerChestsBtn" style="display:none" onclick="openPlayerChests()">📦 Player Chests</button>
   </div>
 
   <!-- Period Info -->
@@ -355,6 +396,30 @@
     <input type="text" id="chestRefSearch" placeholder="Search chests..." oninput="filterChestRef()">
     <div id="chestRefBody"></div>
     <div class="loading" id="chestRefLoading" style="display:none"><div class="spinner"></div><br>Loading...</div>
+  </div>
+</div>
+
+<!-- Player Chests Modal (superiors only) -->
+<div class="modal-overlay" id="playerChestsModal">
+  <div class="modal pc-modal">
+    <button class="close-btn" onclick="closePlayerChests()">&times;</button>
+    <h2>📦 Player Chests</h2>
+    <form class="pc-form" id="pcForm" onsubmit="event.preventDefault(); loadPlayerChests();">
+      <label class="pc-player">Player
+        <input type="text" id="pcPlayer" list="pcPlayerList" placeholder="Type or pick a player" autocomplete="off" required>
+        <datalist id="pcPlayerList"></datalist>
+      </label>
+      <label>From <input type="date" id="pcFrom" required onchange="pcFromChanged()"></label>
+      <label>To <input type="date" id="pcTo" required></label>
+    </form>
+    <div class="pc-presets">
+      <button type="button" onclick="pcPreset(1)">Last month</button>
+      <button type="button" onclick="pcPreset(3)">Last 3 months</button>
+      <button type="button" onclick="pcPreset(6)">Last 6 months</button>
+    </div>
+    <button type="submit" form="pcForm" class="pc-show" id="pcShowBtn">Show chests</button>
+    <div class="pc-note">At most 6 months. Chests count by the day they were opened, under the player's earlier names too.</div>
+    <div id="pcResult"></div>
   </div>
 </div>
 
@@ -486,6 +551,7 @@
     document.getElementById('navWarnings').style.display = isLoggedIn ? '' : 'none';
     document.getElementById('navBank').style.display = isLoggedIn ? '' : 'none';
     document.getElementById('navResources').style.display = isLoggedIn ? '' : 'none';
+    updatePlayerChestsButton();
   }
 
   // ===========================
@@ -697,8 +763,10 @@
     playerArray.forEach(player => {
       if (player.chestsByTypeGrouped) {
         Object.entries(player.chestsByTypeGrouped).forEach(([type, data]) => {
-          if (!typeData[type]) typeData[type] = { levels: new Set(), total: 0 };
+          if (!typeData[type]) typeData[type] = { levels: new Set(), names: new Set(), total: 0 };
           if (data.levels) Object.keys(data.levels).forEach(level => typeData[type].levels.add(level));
+          // Chests without a level (Store, Seasonal Store, shops…): by chest name
+          if (data.names) Object.keys(data.names).forEach(name => typeData[type].names.add(name));
           typeData[type].total += data.total || 0;
         });
       }
@@ -715,7 +783,8 @@
       })
       .map(([name, data]) => ({
         name,
-        levels: Array.from(data.levels).map(String).sort((a, b) => { const aNum = Number(a); const bNum = Number(b); if (Number.isFinite(aNum) && Number.isFinite(bNum)) return aNum - bNum; if (Number.isFinite(aNum)) return -1; if (Number.isFinite(bNum)) return 1; return a.localeCompare(b); })
+        levels: Array.from(data.levels).map(String).sort((a, b) => { const aNum = Number(a); const bNum = Number(b); if (Number.isFinite(aNum) && Number.isFinite(bNum)) return aNum - bNum; if (Number.isFinite(aNum)) return -1; if (Number.isFinite(bNum)) return 1; return a.localeCompare(b); }),
+        names: Array.from(data.names).sort((a, b) => a.localeCompare(b))
       }));
 
     // Build header
@@ -728,13 +797,17 @@
     const expandableTypes = new Set(['Epic Crypt', 'Rare Crypt', 'Common Crypt', 'Epic Squad']);
     let chestCellIndex = 4;
     sortedTypes.forEach(type => {
-      const isExpandable = expandableTypes.has(type.name);
+      const isExpandable = expandableTypes.has(type.name) || type.names.length > 0;
       const toggleIcon = isExpandable ? `<span class="toggle-icon" onclick="event.stopPropagation(); toggleType('${escapeHtml(type.name)}')">▶</span>` : '';
       headerHtml += `<div class="header-cell type-total-header sortable" data-sort="chest-${chestCellIndex}" data-type="${escapeHtml(type.name)}">${toggleIcon}${escapeHtml(type.name)} ${sortIcon()}</div>`;
       chestCellIndex++;
       type.levels.forEach(level => {
         const levelLabel = /^\d+$/.test(String(level)) ? `Lvl ${level}` : level;
         headerHtml += `<div class="header-cell level-header sortable${expandedTypes.has(type.name) ? ' visible' : ''}" data-sort="chest-${chestCellIndex}" data-type="${escapeHtml(type.name)}" data-level="${escapeHtml(String(level))}">${escapeHtml(String(levelLabel))} ${sortIcon()}</div>`;
+        chestCellIndex++;
+      });
+      type.names.forEach(name => {
+        headerHtml += `<div class="header-cell level-header sortable${expandedTypes.has(type.name) ? ' visible' : ''}" data-sort="chest-${chestCellIndex}" data-type="${escapeHtml(type.name)}" title="${escapeHtml(name)}">${escapeHtml(name)} ${sortIcon()}</div>`;
         chestCellIndex++;
       });
     });
@@ -792,6 +865,10 @@
         type.levels.forEach(level => {
           const levelCount = typeInfo?.levels?.[level] || 0;
           rowsHtml += `<div class="cell level-cell${expandedTypes.has(type.name) ? ' visible' : ''}" data-type="${escapeHtml(type.name)}" data-level="${level}"><span class="${levelCount === 0 ? 'count-zero' : ''}">${levelCount || '-'}</span></div>`;
+        });
+        type.names.forEach(name => {
+          const nameCount = typeInfo?.names?.[name] || 0;
+          rowsHtml += `<div class="cell level-cell${expandedTypes.has(type.name) ? ' visible' : ''}" data-type="${escapeHtml(type.name)}"><span class="${nameCount === 0 ? 'count-zero' : ''}">${nameCount || '-'}</span></div>`;
         });
       });
       rowsHtml += '</div>';
@@ -1001,6 +1078,148 @@
   // Close modal on overlay click
   document.getElementById('chestRefModal').addEventListener('click', function(e) {
     if (e.target === this) closeChestPointsRef();
+  });
+
+  // ===========================
+  // PLAYER CHESTS (superiors only)
+  // One player's chests over a chosen range of at most 6 months, grouped by
+  // chest type like the player table (the Worker's getPlayerChestsForRange).
+  // ===========================
+  const PC_MAX_MONTHS = 6;
+  const pcIso = (d) => d.toISOString().slice(0, 10);
+  const pcTodayIso = () => pcIso(new Date());
+  function pcAddMonths(iso, n) {
+    const [y, m, d] = iso.split('-').map(Number);
+    const last = new Date(Date.UTC(y, m - 1 + n + 1, 0)).getUTCDate();
+    return pcIso(new Date(Date.UTC(y, m - 1 + n, Math.min(d, last))));
+  }
+
+  function updatePlayerChestsButton() {
+    const btn = document.getElementById('playerChestsBtn');
+    const show = isLoggedIn && typeof isPortalAdmin === 'function' && isPortalAdmin();
+    if (btn) btn.style.display = show ? '' : 'none';
+    if (!show) closePlayerChests();
+  }
+  document.addEventListener('portal-role-change', updatePlayerChestsButton);
+  document.addEventListener('DOMContentLoaded', updatePlayerChestsButton);
+
+  function openPlayerChests() {
+    if (!isLoggedIn || !(typeof isPortalAdmin === 'function' && isPortalAdmin())) return;
+    const names = playerData.map(p => p.name || p.player).filter(Boolean).sort((a, b) => a.localeCompare(b));
+    document.getElementById('pcPlayerList').innerHTML = names.map(n => `<option value="${escapeHtml(n)}"></option>`).join('');
+    if (!document.getElementById('pcFrom').value) pcPreset(1);
+    document.getElementById('pcTo').max = pcTodayIso();
+    pcFromChanged();
+    document.getElementById('playerChestsModal').classList.add('active');
+    document.getElementById('pcPlayer').focus();
+  }
+
+  function closePlayerChests() {
+    document.getElementById('playerChestsModal').classList.remove('active');
+  }
+
+  function pcPreset(months) {
+    const to = pcTodayIso();
+    document.getElementById('pcTo').value = to;
+    document.getElementById('pcFrom').value = pcAddMonths(to, -months);
+    pcFromChanged();
+  }
+
+  // The "To" date stays within 6 months of "From".
+  function pcFromChanged() {
+    const from = document.getElementById('pcFrom').value;
+    const toInput = document.getElementById('pcTo');
+    if (!from) return;
+    const limit = pcAddMonths(from, PC_MAX_MONTHS);
+    const today = pcTodayIso();
+    toInput.min = from;
+    toInput.max = limit < today ? limit : today;
+    if (toInput.value && toInput.value > limit) toInput.value = limit;
+    if (toInput.value && toInput.value < from) toInput.value = from;
+  }
+
+  async function loadPlayerChests() {
+    const player = document.getElementById('pcPlayer').value.trim();
+    const from = document.getElementById('pcFrom').value;
+    const to = document.getElementById('pcTo').value;
+    const out = document.getElementById('pcResult');
+    if (!player || !from || !to) { out.innerHTML = '<div class="pc-error">Choose a player, a start and an end date.</div>'; return; }
+    if (from > to) { out.innerHTML = '<div class="pc-error">The start date is after the end date.</div>'; return; }
+    if (to > pcAddMonths(from, PC_MAX_MONTHS)) { out.innerHTML = '<div class="pc-error">The period can be at most 6 months.</div>'; return; }
+
+    const btn = document.getElementById('pcShowBtn');
+    btn.disabled = true;
+    out.innerHTML = '<div class="loading" style="padding:20px"><div class="spinner"></div></div>';
+    try {
+      const result = await callFunction('getPlayerChestsForRange', [player, from, to]);
+      renderPlayerChests(result);
+    } catch (err) {
+      out.innerHTML = `<div class="pc-error">${escapeHtml(err.message || 'Could not load the chests.')}</div>`;
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  function renderPlayerChests(r) {
+    const out = document.getElementById('pcResult');
+    const groups = r.chestsByTypeGrouped || {};
+    const head = `<div style="font-size:0.88em;color:var(--text-muted);">${escapeHtml(r.player)}`
+      + (r.names && r.names.length > 1 ? ` <span title="Earlier names">(also ${r.names.slice(1).map(escapeHtml).join(', ')})</span>` : '')
+      + ` · ${formatPeriodDate(r.startDate)} → ${formatPeriodDate(r.endDate)}</div>`;
+    if (!r.totalChests) {
+      out.innerHTML = head + '<div class="loading" style="padding:20px">No chests in this period.</div>';
+      return;
+    }
+    const summary = `<div class="pc-summary">
+        <div><b>${r.totalChests.toLocaleString()}</b><span>Chests</span></div>
+        <div><b>${r.totalPoints.toLocaleString()}</b><span>Points</span></div>
+        <div><b>${(r.periods || []).length}</b><span>Periods</span></div>
+      </div>`;
+
+    const order = ['Epic Crypt', 'Rare Crypt', 'Common Crypt', 'Epic Squad'];
+    const rank = (t) => { const i = order.indexOf(t); return i >= 0 ? i : order.length; };
+    const levelSort = (a, b) => {
+      const na = Number(a), nb = Number(b);
+      if (Number.isFinite(na) && Number.isFinite(nb)) return na - nb;
+      if (Number.isFinite(na)) return -1;
+      if (Number.isFinite(nb)) return 1;
+      return a.localeCompare(b);
+    };
+    const types = Object.keys(groups).sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
+    let rows = '';
+    types.forEach((type, i) => {
+      const g = groups[type];
+      const levels = Object.keys(g.levels || {}).sort(levelSort);
+      const names = Object.keys(g.names || {}).sort((a, b) => (g.names[b] - g.names[a]) || a.localeCompare(b));
+      const expandable = levels.length > 0 || names.length > 0;
+      rows += `<tr class="pc-type${expandable ? ' expandable' : ''}" data-i="${i}"${expandable ? ' onclick="togglePcType(this)"' : ''}>`
+        + `<td>${expandable ? '<span class="toggle-icon">▶</span> ' : '<span class="toggle-icon"></span> '}${escapeHtml(type)}</td>`
+        + `<td class="num">${g.total.toLocaleString()}</td><td class="num">${(g.points || 0).toLocaleString()}</td></tr>`;
+      levels.forEach(l => {
+        const label = /^\d+$/.test(l) ? `Lvl ${l}` : l;
+        rows += `<tr class="pc-level" data-i="${i}"><td>${escapeHtml(label)}</td><td class="num">${g.levels[l].toLocaleString()}</td><td></td></tr>`;
+      });
+      names.forEach(n => {
+        rows += `<tr class="pc-level" data-i="${i}"><td>${escapeHtml(n)}</td><td class="num">${g.names[n].toLocaleString()}</td><td></td></tr>`;
+      });
+    });
+    rows += `<tr class="pc-total"><td>Total</td><td class="num">${r.totalChests.toLocaleString()}</td><td class="num">${r.totalPoints.toLocaleString()}</td></tr>`;
+    const table = `<table class="pc-table"><thead><tr><th>Chest type</th><th class="num">Chests</th><th class="num">Points</th></tr></thead><tbody>${rows}</tbody></table>`;
+
+    const periods = (r.periods || []).map(p => `<tr><td>${escapeHtml(p.name && p.name !== 'manual' ? p.name : '')}${p.name && p.name !== 'manual' ? ' · ' : ''}${formatPeriodDate(p.start)} → ${formatPeriodDate(p.end)}</td>`
+      + `<td class="num">${p.chests.toLocaleString()}</td><td class="num">${p.points.toLocaleString()}</td></tr>`).join('');
+    const perPeriod = periods ? `<details class="pc-periods"><summary>Per period</summary>
+        <table class="pc-table"><thead><tr><th>Period</th><th class="num">Chests</th><th class="num">Points</th></tr></thead><tbody>${periods}</tbody></table></details>` : '';
+    out.innerHTML = head + summary + table + perPeriod;
+  }
+
+  function togglePcType(row) {
+    const open = row.classList.toggle('expanded');
+    document.querySelectorAll(`#pcResult .pc-level[data-i="${row.dataset.i}"]`).forEach(tr => tr.classList.toggle('visible', open));
+  }
+
+  document.getElementById('playerChestsModal').addEventListener('click', function(e) {
+    if (e.target === this) closePlayerChests();
   });
 
   // ===========================
